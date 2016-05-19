@@ -5,10 +5,13 @@
  */
 package ryv.app.negocio.cu_login.dao;
 
+import java.util.List;
+
 /**
  *
  * @author Raúl
  */
 public interface LoginDAO {
-    
+
+    public List obtenerRegistrosLogin();
 }

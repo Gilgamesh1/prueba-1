@@ -20,21 +20,25 @@
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="inkar.app.presentacion"/>
-    <context:component-scan base-package="inkar.app.negocio"/>
-    <context:component-scan base-package="inkar.app.hibernate"/>
+    <context:component-scan base-package="ryv.app.interfaces"/>
+    <context:component-scan base-package="ryv.app.negocio"/>
+    <context:component-scan base-package="ryv.app.hibernate"/>
     
     <mvc:resources mapping="/recursos/**" location="/recursos/" />
     <mvc:annotation-driven/>
               
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-        <property name="viewClass"
+    <!--bean id="viewResolver"
+          class="org.springframework.web.servlet.view.UrlBasedViewResolver"-->
+        <!--property name="viewClass"
                   value="org.springframework.web.servlet.view.tiles3.TilesView"/> 
-        <property name="order" value="#{tilesViewResolver.order+1}" />
+        <property name="order" value="#{tilesViewResolver.order+1}" /-->
         <!--property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" /-->
-    </bean>
+        <property name="suffix" value=".jsp" />
+    </bean-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean> 
     
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
         <property name="locations">  
@@ -45,7 +49,7 @@
     </bean> 
     
     <!-- HIBERNATE -->
-    <bean class="inkar.app.hibernate.HibernateUtil" factory-method="getSessionFactory"/> 
+    <!--bean class="inkar.app.hibernate.HibernateUtil" factory-method="getSessionFactory"/--> 
     <!--aop:aspectj-autoproxy /> 
     destroy-method="close"-->
     

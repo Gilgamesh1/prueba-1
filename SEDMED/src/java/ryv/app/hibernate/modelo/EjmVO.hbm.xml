@@ -2,18 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="inkar.app.hibernate.modelo.CategoriaVO" table="categoria">
-        <id column="idcategoria" name="id">
+    <class name="inkar.app.hibernate.modelo.EjmVO" table="ejem">
+        <id column="idEjm" name="id">
             <generator class="sequence">
-                <param name="sequence">categorias_idcategoria_seq</param>
+                <param name="sequence">ejem_idEjm_seq</param>
             </generator>
         </id>
-        <property column="descripcion" name="descripcion"/>
-        <set name="peliculas" cascade="all" inverse="true"  >
-            <key>
-                <column name="idcategoria_fk"  />
-            </key>
-            <one-to-many class="inkar.app.hibernate.modelo.PeliculaVO" />
-        </set>
+        <property column="sTexto" name="texto"/>
+        <property column="iEntero" name="numero"/>
+        <property column="dDouble" name="decimales"/>
+        <property column="dFecha" name="fecha" type="date"/>
+        <property column="dTime" name="tiempo" type="time"/>
+        <property column="dTimeStamp" name="timeStamp" type="timestamp"/>
     </class>
 </hibernate-mapping>
