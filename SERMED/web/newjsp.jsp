@@ -30,5 +30,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <form class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
   </body>
 </html>
