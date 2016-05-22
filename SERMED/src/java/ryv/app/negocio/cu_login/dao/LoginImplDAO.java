@@ -7,18 +7,26 @@ package ryv.app.negocio.cu_login.dao;
 
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Raúl
  */
+@Repository
 public class LoginImplDAO implements LoginDAO {
-
+    
     private static final Logger log = Logger.getLogger(LoginImplDAO.class);
-
+    
     @Override
     public List obtenerRegistrosLogin() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public void crearLogin() {
+        log.debug("Inicio");
+        log.debug("Fin");
+    }
+    
 }

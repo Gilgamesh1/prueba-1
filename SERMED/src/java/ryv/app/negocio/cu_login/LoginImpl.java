@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ryv.app.negocio.cu_login.dao.LoginImplDAO;
+import ryv.app.negocio.cu_login.dao.LoginDAO;
 import ryv.app.negocio.cu_login.dto.LoginDTO;
 
 /**
@@ -20,9 +20,9 @@ import ryv.app.negocio.cu_login.dto.LoginDTO;
 @Service
 public class LoginImpl implements Login {
 
-    private static final Logger log = Logger.getLogger(LoginImpl.class);
-//    @Autowired
-//    private LoginImplDAO dao;
+    private final Logger log = Logger.getLogger(LoginImpl.class);
+    @Autowired
+    private LoginDAO dao;
 
     @Override
     public void insertar(LoginDTO dto) {
@@ -35,6 +35,7 @@ public class LoginImpl implements Login {
         log.debug(sdf.format(dto.getFecha()));
         log.debug(sdf.format(dto.getTiempo()));
         log.debug(dto.getTimeStamp());
+        dao.crearLogin();
         log.debug("Fin");
     }
 

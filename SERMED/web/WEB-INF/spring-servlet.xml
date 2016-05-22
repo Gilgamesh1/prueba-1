@@ -26,15 +26,7 @@
     
     <mvc:resources mapping="/recursos/**" location="/recursos/" />
     <mvc:annotation-driven/>
-              
-    <!--bean id="viewResolver"
-          class="org.springframework.web.servlet.view.UrlBasedViewResolver"-->
-        <!--property name="viewClass"
-                  value="org.springframework.web.servlet.view.tiles3.TilesView"/> 
-        <property name="order" value="#{tilesViewResolver.order+1}" /-->
-        <!--property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" />
-    </bean-->
+    
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
@@ -49,11 +41,10 @@
     </bean> 
     
     <!-- HIBERNATE -->
-    <!--bean class="inkar.app.hibernate.HibernateUtil" factory-method="getSessionFactory"/--> 
-    <!--aop:aspectj-autoproxy /> 
-    destroy-method="close"-->
+    <bean class="ryv.app.hibernate.HibernateUtil" factory-method="getSessionFactory"/>
+    <!--aop:aspectj-autoproxy/>
     
-    <!--bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName" value="${jdbc.driverClassName}" />  
         <property name="url" value="${jdbc.url}" />  
         <property name="username" value="${jdbc.username}" />  
@@ -80,8 +71,8 @@
     
     <tx:annotation-driven transaction-manager="transacctionManager"/> 
    
-<bean id="persistenceExceptionTranslationPostProcessor"
-    class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/ -->
+    <bean id="persistenceExceptionTranslationPostProcessor"
+        class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/-->
          
     <!-- INTERNACIONALIZACION Y LOCALIZACION -->
     <bean id="messageSource"

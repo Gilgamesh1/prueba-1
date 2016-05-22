@@ -5,10 +5,21 @@
  */
 package ryv.app.hibernate;
 
+import java.util.List;
+
 /**
  *
  * @author Raúl
  */
 public interface BaseDAO {
     
+    public void insertar(Object entity);
+
+    public void actualizar(Object entity);
+
+    public void eliminar(Object entity);
+
+    public List findAll(Class clazz);
+    
+    public Object getEntity(Class clazz,int id);
 }

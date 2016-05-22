@@ -43,36 +43,45 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <div class="col-md-1"><label>Identificador</label></div><div class="col-md-11"><input type="text"/></div>
-                <div class="col-md-1"><label for="">Texto</label></div><div class="col-md-11"><input type="text"></div>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="t1" class="col-md-1">Identificador</label>
+                        <div class="col-md-10"><input id="t1" type="text" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">                        
+                        <label for="t2" class="col-md-1">Texto</label>
+                        <div class="col-md-5"><input id="t2" type="text" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="t3" class="col-md-1">N&uacute;mero</label>
+                        <div class="col-md-5"><input id="t3" type="number" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="t4" class="col-md-1">Decimal</label>
+                        <div class="col-md-5"><input id="t4" type="text" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="t5" class="col-md-1">Fecha</label>
+                        <div class="col-md-5"><input id="t5" type="datetime" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="t6" class="col-md-1">Hora</label>
+                        <div class="col-md-5"><input id="t6" type="text" class="form-control"/></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="t7" class="col-md-1">Fecha y Hora</label>
+                        <div class="col-md-5"><input id="t7" type="text" class="form-control"/></div>
+                    </div>
+                    <button type="submit" class="btn btn-default">Guardar</button>
+                </form>
             </div>
             <div class="row-fluid">
-                <div class="col-md-1"><label>Numero</label></div><div class="col-md-11"><input type="text"/></div>
-                <div class="col-md-1"><label for="">Decimal</label></div><div class="col-md-11"><input type="text"></div>
-            </div>
-            <!--div class="row-fluid">
-                <nav class="navbar navbar-default navbar-fixed-botton">
+                <nav class="navbar navbar-default navbar-fixed-bottom">
                     <div class="container">
                         ...
                     </div>
                 </nav>
-            </div-->
+            </div>
         </div>
-
-        <table>
-            <tr>Pagina de Login</tr>
-            <!--tr>
-                <td></td><td><forminput path="identificador"/></td>
-            </tr>
-            <tr>
-                <td><label>Texto</label></td><td><forminput path="entero"/></td>
-            </tr>
-            <tr>
-                <td><label>Numero</label></td><td><forminput path="entero"/></td>
-            </tr>
-            <tr>
-                <td><label>Decimal</label></td><td><forminput path="decimal"/></td>
-            </tr-->
-        </table>
     </body>
 </html>
