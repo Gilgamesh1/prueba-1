@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="inkar.app.hibernate.modelo.EjmVO" table="ejem">
+    <class name="ryv.app.hibernate.modelo.EjmVO" table="ejem">
         <id column="idEjm" name="id">
             <generator class="sequence">
                 <param name="sequence">ejem_idEjm_seq</param>
@@ -11,8 +11,8 @@
         <property column="sTexto" name="texto"/>
         <property column="iEntero" name="numero"/>
         <property column="dDouble" name="decimales"/>
-        <property column="dFecha" name="fecha" type="date"/>
-        <property column="dTime" name="tiempo" type="time"/>
-        <property column="dTimeStamp" name="timeStamp" type="timestamp"/>
+        <property column="dFecha" name="fecha"/>
+        <property column="dTime" name="tiempo"/>
+        <property column="dTimeStamp" name="timeStamp"/>
     </class>
 </hibernate-mapping>
