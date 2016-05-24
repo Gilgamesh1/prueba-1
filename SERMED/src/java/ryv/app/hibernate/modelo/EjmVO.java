@@ -5,13 +5,14 @@
  */
 package ryv.app.hibernate.modelo;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author Raúl
  */
-public class EjmVO {
+public class EjmVO implements Serializable {
 
     private int id;
     private String texto;
