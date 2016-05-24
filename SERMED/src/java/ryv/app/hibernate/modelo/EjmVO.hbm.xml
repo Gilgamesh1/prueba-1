@@ -5,7 +5,7 @@
     <class name="ryv.app.hibernate.modelo.EjmVO" table="ejem">
         <id column="idEjm" name="id">
             <generator class="sequence">
-                <param name="sequence">ejem_idEjm_seq</param>
+                <param name="sequence">"ejem_idEjm_seq"</param>
             </generator>
         </id>
         <property column="sTexto" name="texto"/>
