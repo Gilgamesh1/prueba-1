@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ryv.app.hibernate.modelo.EjmVO;
 import ryv.app.negocio.cu_login.dao.LoginDAO;
 import ryv.app.negocio.cu_login.dto.LoginDTO;
 
@@ -35,7 +36,15 @@ public class LoginImpl implements Login {
         log.debug(sdf.format(dto.getFecha()));
         log.debug(sdf.format(dto.getTiempo()));
         log.debug(dto.getTimeStamp());
-        dao.crearLogin();
+        EjmVO entity = new EjmVO();
+//        entity.setId(dto.getIdentificador());
+        entity.setNumero(dto.getEntero());
+        entity.setDecimales(dto.getDecimal());
+        entity.setTexto(dto.getTexto());
+        entity.setFecha(dto.getFecha());
+        entity.setTiempo(dto.getTiempo());
+        entity.setTimeStamp(dto.getTimeStamp());
+        dao.crearLogin(entity);
         log.debug("Fin");
     }
 

@@ -6,6 +6,7 @@
 package ryv.app.negocio.cu_login.dao;
 
 import java.util.List;
+import ryv.app.hibernate.modelo.EjmVO;
 
 /**
  *
@@ -14,5 +15,5 @@ import java.util.List;
 public interface LoginDAO {
 
     public List obtenerRegistrosLogin();
-    public void crearLogin();
+    public void crearLogin(EjmVO entity);
 }

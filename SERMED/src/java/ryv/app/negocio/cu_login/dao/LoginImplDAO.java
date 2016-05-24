@@ -7,16 +7,23 @@ package ryv.app.negocio.cu_login.dao;
 
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ryv.app.hibernate.modelo.EjmVO;
 
 /**
  *
  * @author Raúl
  */
 @Repository
-public class LoginImplDAO implements LoginDAO {
+public class LoginImplDAO implements LoginDAO {//extends BaseImplDAO 
     
-    private static final Logger log = Logger.getLogger(LoginImplDAO.class);
+    private final Logger log = Logger.getLogger(LoginImplDAO.class);
+    @Autowired
+    SessionFactory sessionFactory;
+    
     
     @Override
     public List obtenerRegistrosLogin() {
@@ -24,8 +31,22 @@ public class LoginImplDAO implements LoginDAO {
     }
     
     @Override
-    public void crearLogin() {
+    public void crearLogin(EjmVO entity) {
         log.debug("Inicio");
+        Session session = this.sessionFactory.getCurrentSession();
+        try {
+            session.beginTransaction();
+            session.save(entity);
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            try {
+                if (session.getTransaction().isActive()) {
+                    session.getTransaction().rollback();
+                }
+            } catch (Exception exc) {
+                log.warn("Falló al hacer un rollback", exc);
+            }
+        }
         log.debug("Fin");
     }
     

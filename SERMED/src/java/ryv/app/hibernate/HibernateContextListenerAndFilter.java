@@ -21,6 +21,8 @@ import javax.servlet.annotation.WebListener;
  *
  * @author Raúl
  */
+@WebListener()
+@WebFilter(urlPatterns = {"*.html"})
 public class HibernateContextListenerAndFilter  implements Filter, ServletContextListener {
     
     @Override
