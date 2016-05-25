@@ -46,6 +46,7 @@ public class LoginAction {
         log.debug("INICIO");
         login.insertar(loginDTO);
         ModelAndView model = new ModelAndView("cu_login/inicio");
+        model.addObject("loginDTO", new LoginDTO());
         log.debug("Fin");
         return model;
     }
@@ -55,6 +56,7 @@ public class LoginAction {
         log.debug("INICIO");
         login.actualizar(loginDTO);
         ModelAndView model = new ModelAndView("cu_login/inicio");
+        model.addObject("loginDTO", new LoginDTO());
         log.debug("Fin");
         return model;
     }

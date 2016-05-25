@@ -52,7 +52,22 @@ public class LoginImpl implements Login {
     @Override
     public void actualizar(LoginDTO dto) {
         log.debug("Inicio");
-        dao.eliminar(dto);
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
+        EjmVO ejmVO=(EjmVO) dao.getEntity(EjmVO.class, dto.getIdentificador());
+        ejmVO.setNumero(dto.getEntero());
+        ejmVO.setTexto(dto.getTexto());
+        ejmVO.setDecimales(dto.getDecimal());
+        ejmVO.setNumero(dto.getEntero());        
+        try {
+            ejmVO.setFecha(sdfDate.parse(dto.getFecha()));
+            ejmVO.setTiempo(sdfTime.parse(dto.getTiempo()));
+        } catch (ParseException e) {
+            log.debug(e.getMessage());
+            e.printStackTrace();
+        }
+        ejmVO.setTimeStamp(new Date());
+        dao.actualizar(ejmVO);
         log.debug("Fin");
     }
 

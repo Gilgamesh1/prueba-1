@@ -17,6 +17,7 @@
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/jquery/jquery-1.11.2.min.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/jquery/jquery-ui-1.11.2/jquery-ui.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/bootstrap/js/bootstrap.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_login/cu_login.js"/>"></script>
         <link href="<c:url value="/recursos/js/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
         <link href="<c:url value="/recursos/js/bootstrap/css/bootstrap-theme.css"/>" rel="stylesheet">
     </head>
@@ -44,7 +45,7 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <form:form class="form-horizontal" modelAttribute="loginDTO" action="insertarLogin.html" method="GET">
+                <form:form id="form" class="form-horizontal" modelAttribute="loginDTO" action="insertarLogin.html" method="GET">
                     <div class="form-group">
                         <label for="t1" class="col-md-1">Identificador</label>
                         <div class="col-md-5"><form:input id="t1" path="identificador" type="text" class="form-control"/></div>
@@ -74,7 +75,7 @@
                         <div class="col-md-5"><form:input id="t7" path="timeStamp" type="text" class="form-control"/></div>
                     </div>
                     <button type="submit" class="btn btn-default">Guardar</button>
-                    <button type="submit" class="btn btn-default">Actualizar</button>
+                    <button type="button" class="btn btn-default" onclick="actualizarLoggin();">Actualizar</button>
                 </form:form>
             </div>
             <!--div class="row-fluid">
