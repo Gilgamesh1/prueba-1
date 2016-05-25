@@ -5,7 +5,9 @@
  */
 package ryv.app.negocio.cu_login;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,30 +30,35 @@ public class LoginImpl implements Login {
     @Override
     public void insertar(LoginDTO dto) {
         log.debug("Inicio");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        log.debug(dto.getIdentificador());
-        log.debug(dto.getEntero());
-        log.debug(dto.getDecimal());
-        log.debug(dto.getTexto());
-        log.debug(sdf.format(dto.getFecha()));
-        log.debug(sdf.format(dto.getTiempo()));
-        log.debug(dto.getTimeStamp());
+        SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
         EjmVO entity = new EjmVO();
-//        entity.setId(dto.getIdentificador());
         entity.setNumero(dto.getEntero());
         entity.setDecimales(dto.getDecimal());
         entity.setTexto(dto.getTexto());
-        entity.setFecha(dto.getFecha());
-        entity.setTiempo(dto.getTiempo());
-        entity.setTimeStamp(dto.getTimeStamp());
-        dao.crearLogin(entity);
+        try {
+            entity.setFecha(sdfDate.parse(dto.getFecha()));
+            entity.setTiempo(sdfTime.parse(dto.getTiempo()));
+        } catch (ParseException e) {
+            log.debug(e.getMessage());
+            e.printStackTrace();
+        }
+        entity.setTimeStamp(new Date());
+//        dao.crearLogin(entity);
+        dao.insertar(entity);
         log.debug("Fin");
     }
 
     @Override
     public void actualizar(LoginDTO dto) {
         log.debug("Inicio");
+        dao.eliminar(dto);
         log.debug("Fin");
+    }
+
+    @Override
+    public void eliminar(LoginDTO dto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -5,8 +5,6 @@
  */
 package ryv.app.negocio.cu_login.dto;
 
-import java.util.Date;
-
 /**
  *
  * @author Raúl
@@ -17,18 +15,19 @@ public class LoginDTO {
     private String texto;
     private int entero;
     private double decimal;
-    private Date fecha;
-    private Date tiempo;
-    private Date timeStamp;
+    private String fecha;
+    private String tiempo;
+    private String timeStamp;
 
     public LoginDTO() {
         this.identificador = 0;
         this.texto = "texto";
         this.entero = 1;
         this.decimal = 1.1;
-        this.fecha = new Date();
-        this.tiempo = new Date();;
-        this.timeStamp = new Date();;
+        this.fecha = "fechaaah";
+//        this.fecha = new Date();
+//        this.tiempo = new Date();
+//        this.timeStamp = new Date();
     }
 
     /**
@@ -90,42 +89,43 @@ public class LoginDTO {
     /**
      * @return the fecha
      */
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
     /**
      * @param fecha the fecha to set
      */
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
     /**
      * @return the tiempo
      */
-    public Date getTiempo() {
+    public String getTiempo() {
         return tiempo;
     }
 
     /**
      * @param tiempo the tiempo to set
      */
-    public void setTiempo(Date tiempo) {
+    public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
     }
 
     /**
      * @return the timeStamp
      */
-    public Date getTimeStamp() {
+    public String getTimeStamp() {
         return timeStamp;
     }
 
     /**
      * @param timeStamp the timeStamp to set
      */
-    public void setTimeStamp(Date timeStamp) {
+    public void setTimeStamp(String timeStamp) {
         this.timeStamp = timeStamp;
     }
+
 }

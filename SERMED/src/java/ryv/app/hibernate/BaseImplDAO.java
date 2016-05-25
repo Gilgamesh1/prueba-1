@@ -64,6 +64,9 @@ public class BaseImplDAO implements BaseDAO {
         log.debug("actualizar");
     }
 
+    /** Metodo para eliminar un registro de la base de datos
+    * @param entity objeto para eliminar
+    */
     @Override
     public void eliminar(Object entity) {
         log.debug("eliminar");
@@ -87,13 +90,16 @@ public class BaseImplDAO implements BaseDAO {
     @Override
     public List findAll(Class clazz) {
         log.debug("findAll");
-        Session session = this.sessionFactory.getCurrentSession();;
+        Session session = this.sessionFactory.getCurrentSession();
         List list = session.createCriteria(clazz)
                 .addOrder(Order.asc("id")).list();
         log.debug("findAll");
         return list;
     }
 
+    /*Metodo para 
+    *
+    */
     @Override
     public Object getEntity(Class clazz, int id) {
         log.debug("getEntity");

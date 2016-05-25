@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import ryv.app.hibernate.BaseImplDAO;
 import ryv.app.hibernate.modelo.EjmVO;
 
 /**
@@ -18,18 +19,20 @@ import ryv.app.hibernate.modelo.EjmVO;
  * @author Raúl
  */
 @Repository
-public class LoginImplDAO implements LoginDAO {//extends BaseImplDAO 
-    
+public class LoginImplDAO extends BaseImplDAO implements LoginDAO {
+
     private final Logger log = Logger.getLogger(LoginImplDAO.class);
     @Autowired
     SessionFactory sessionFactory;
-    
-    
+
     @Override
     public List obtenerRegistrosLogin() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.debug("Inicio");
+        this.eliminar(null);
+        log.debug("Fin");
+        return null;
     }
-    
+
     @Override
     public void crearLogin(EjmVO entity) {
         log.debug("Inicio");
@@ -49,5 +52,5 @@ public class LoginImplDAO implements LoginDAO {//extends BaseImplDAO
         }
         log.debug("Fin");
     }
-    
+
 }

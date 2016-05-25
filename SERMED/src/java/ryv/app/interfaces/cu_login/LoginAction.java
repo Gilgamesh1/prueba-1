@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ryv.app.negocio.cu_login.Login;
 import ryv.app.negocio.cu_login.dto.LoginDTO;
@@ -31,10 +33,27 @@ public class LoginAction {
     }
 
     @RequestMapping("/cargarLogin")
-    public ModelAndView insertarLogin(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView cargarLogin(HttpServletRequest request, HttpServletResponse response) {
         log.debug("INICIO");
-        LoginDTO dto =new LoginDTO();
-        login.insertar(dto);
+        ModelAndView model = new ModelAndView("cu_login/inicio");
+        model.addObject("loginDTO", new LoginDTO());
+        log.debug("Fin");
+        return model;
+    }
+
+    @RequestMapping(value="/insertarLogin", method = RequestMethod.GET)
+    public ModelAndView insertarLogin(@ModelAttribute("object") LoginDTO loginDTO,HttpServletRequest request) {
+        log.debug("INICIO");
+        login.insertar(loginDTO);
+        ModelAndView model = new ModelAndView("cu_login/inicio");
+        log.debug("Fin");
+        return model;
+    }
+
+    @RequestMapping(value="/actualizarLogin", method = RequestMethod.GET)
+    public ModelAndView actualizarLogin(@ModelAttribute("object") LoginDTO loginDTO,HttpServletRequest request) {
+        log.debug("INICIO");
+        login.actualizar(loginDTO);
         ModelAndView model = new ModelAndView("cu_login/inicio");
         log.debug("Fin");
         return model;

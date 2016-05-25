@@ -18,6 +18,8 @@ public interface Login {
 
     public void actualizar(LoginDTO dto);
 
+    public void eliminar(LoginDTO dto);
+
     public LoginDTO buscarTodos(int id);
 
     public List<LoginDTO> buscarTodos();
