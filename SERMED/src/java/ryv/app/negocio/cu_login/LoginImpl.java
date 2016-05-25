@@ -7,7 +7,9 @@ package ryv.app.negocio.cu_login;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,11 +56,11 @@ public class LoginImpl implements Login {
         log.debug("Inicio");
         SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
-        EjmVO ejmVO=(EjmVO) dao.getEntity(EjmVO.class, dto.getIdentificador());
+        EjmVO ejmVO = (EjmVO) dao.getEntity(EjmVO.class, dto.getIdentificador());
         ejmVO.setNumero(dto.getEntero());
         ejmVO.setTexto(dto.getTexto());
         ejmVO.setDecimales(dto.getDecimal());
-        ejmVO.setNumero(dto.getEntero());        
+        ejmVO.setNumero(dto.getEntero());
         try {
             ejmVO.setFecha(sdfDate.parse(dto.getFecha()));
             ejmVO.setTiempo(sdfTime.parse(dto.getTiempo()));
@@ -73,7 +75,10 @@ public class LoginImpl implements Login {
 
     @Override
     public void eliminar(LoginDTO dto) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.debug("Inicio");
+        EjmVO ejmVO = (EjmVO) dao.getEntity(EjmVO.class, dto.getIdentificador());
+        dao.eliminar(ejmVO);
+        log.debug("Fin");
     }
 
     @Override
@@ -83,7 +88,25 @@ public class LoginImpl implements Login {
 
     @Override
     public List<LoginDTO> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.debug("Inicio");
+        List<EjmVO> lstEjmVO = (List<EjmVO>) dao.findAll(EjmVO.class);
+        List<LoginDTO> lstLoginDTO = new ArrayList<LoginDTO>();
+        if (!lstEjmVO.isEmpty()) {
+            Iterator it = lstEjmVO.iterator();
+            while (it.hasNext()) {
+                EjmVO ejmVO = (EjmVO) it.next();
+                LoginDTO loginDTO = new LoginDTO(ejmVO.getId(), ejmVO.getTexto(), ejmVO.getNumero(), ejmVO.getDecimales());
+                SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
+                SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm");
+                SimpleDateFormat sdfTimeStamp = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+                loginDTO.setFecha(sdfDate.format(ejmVO.getFecha()));
+                loginDTO.setTiempo(sdfTime.format(ejmVO.getTiempo()));
+                loginDTO.setTimeStamp(sdfTimeStamp.format(ejmVO.getTimeStamp()));
+                lstLoginDTO.add(loginDTO);
+            }
+        }
+        log.debug("Fin");
+        return lstLoginDTO;
     }
 
 }

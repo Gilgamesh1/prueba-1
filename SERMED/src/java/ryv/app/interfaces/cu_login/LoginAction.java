@@ -35,8 +35,10 @@ public class LoginAction {
     @RequestMapping("/cargarLogin")
     public ModelAndView cargarLogin(HttpServletRequest request, HttpServletResponse response) {
         log.debug("INICIO");
+        List<LoginDTO> lst=login.buscarTodos();
         ModelAndView model = new ModelAndView("cu_login/inicio");
         model.addObject("loginDTO", new LoginDTO());
+        model.addObject("lstLogin", lst);
         log.debug("Fin");
         return model;
     }
@@ -55,8 +57,22 @@ public class LoginAction {
     public ModelAndView actualizarLogin(@ModelAttribute("object") LoginDTO loginDTO,HttpServletRequest request) {
         log.debug("INICIO");
         login.actualizar(loginDTO);
+        List<LoginDTO> lst=login.buscarTodos();
         ModelAndView model = new ModelAndView("cu_login/inicio");
         model.addObject("loginDTO", new LoginDTO());
+        model.addObject("lstLogin", lst);
+        log.debug("Fin");
+        return model;
+    }
+
+    @RequestMapping(value="/eliminiarLogin", method = RequestMethod.GET)
+    public ModelAndView eliminiarLogin(@ModelAttribute("object") LoginDTO loginDTO,HttpServletRequest request) {
+        log.debug("INICIO");
+        login.eliminar(loginDTO);
+        List<LoginDTO> lst=login.buscarTodos();
+        ModelAndView model = new ModelAndView("cu_login/inicio");
+        model.addObject("loginDTO", new LoginDTO());
+        model.addObject("lstLogin", lst);
         log.debug("Fin");
         return model;
     }

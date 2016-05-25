@@ -30,6 +30,13 @@ public class LoginDTO {
 //        this.timeStamp = new Date();
     }
 
+    public LoginDTO(int identificador, String texto, int entero, double decimal) {
+        this.identificador = identificador;
+        this.texto = texto;
+        this.entero = entero;
+        this.decimal = decimal;
+    }
+
     /**
      * @return the identificador
      */

@@ -76,15 +76,37 @@
                     </div>
                     <button type="submit" class="btn btn-default">Guardar</button>
                     <button type="button" class="btn btn-default" onclick="actualizarLoggin();">Actualizar</button>
+                    <button type="button" class="btn btn-default" onclick="eliminarLoggin();">Eliminar</button>
                 </form:form>
             </div>
-            <!--div class="row-fluid">
-                <nav class="navbar navbar-default navbar-fixed-bottom">
-                    <div class="container">
-                        ...
-                    </div>
-                </nav>
-            </div-->
+            <div class="row-fluid">
+                <table class="table table-bordered table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Texto</th>
+                            <th>Numero</th>
+                            <th>Decimal</th>
+                            <th>Fecha</th>
+                            <th>Tiempo</th>
+                            <th>Fecha y Tiempo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${lstLogin}" var="elem">
+                        <tr>
+                            <td><c:out value="${elem.identificador}"/></td>
+                            <td><c:out value="${elem.texto}"/></td>
+                            <td><c:out value="${elem.entero}"/></td>
+                            <td><c:out value="${elem.decimal}"/></td>
+                            <td><c:out value="${elem.fecha}"/></td>
+                            <td><c:out value="${elem.tiempo}"/></td>
+                            <td><c:out value="${elem.timeStamp}"/></td>
+                        </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </body>
 </html>

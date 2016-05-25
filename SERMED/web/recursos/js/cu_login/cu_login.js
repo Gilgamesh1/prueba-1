@@ -3,9 +3,13 @@ function actualizarLoggin(){
     v.attr("action","actualizarLogin.html");
     v.val("Y");
     v.submit();
-    console.log("me apretaron "+v);
-    alert("me apretaron "+v);
-    v.attr("action","insertarLogin1.html");
+    v.attr("action","insertarLogin.html");
     v.val("Y");
 }
 
+function eliminarLoggin(){
+    var v=$("#form");
+    v.attr("action","eliminiarLogin.html");
+    v.submit();
+    v.attr("action","insertarLogin.html");
+}
