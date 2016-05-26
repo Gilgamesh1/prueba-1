@@ -93,28 +93,6 @@
                 </form:form>
             </div>
             <div class="row-fluid">
-                <div class="form-group">
-                    <div class="tooltip right" role="tooltip">
-                        <div class="tooltip-arrow"></div>
-                        <div class="tooltip-inner">Error</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="well">
-                    <input type="text" class="span2" id="dp1"/>
-                </div>
-            </div>
-            <div class="well">
-                <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                    <input class="span2" size="16" type="text" value="12-02-2012" readonly="">
-                    <span class="add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-            </div>
-            <div class="row-fluid">
                 <table class="table table-bordered table-striped table-hover table-condensed">
                     <thead>
                         <tr>
