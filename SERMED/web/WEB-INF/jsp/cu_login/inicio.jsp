@@ -49,10 +49,16 @@
                     <div class="form-group">
                         <label for="t1" class="col-md-1">Identificador</label>
                         <div class="col-md-5"><form:input id="t1" path="identificador" type="text" class="form-control"/></div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-default" data-toggle="tooltip" data-placement="left" title="Tooltip on left">Tooltip on left</button>
+                        </div>
                     </div>
                     <div class="form-group">                        
                         <label for="t2" class="col-md-1">Texto</label>
-                        <div class="col-md-5"><form:input id="t2" path="texto" type="text" class="form-control"/></div>
+                        <div class="col-md-5"><form:input id="t2" path="texto" type="text" class="form-control" onchange="vTamano();"/></div>
+                        <div id="vTexto" class="col-md-3 text-danger">
+                            El texto ingresado supera el l&iacute;mite de 100 caracteres.
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="t3" class="col-md-1">N&uacute;mero</label>
@@ -75,9 +81,21 @@
                         <div class="col-md-5"><form:input id="t7" path="timeStamp" type="text" class="form-control"/></div>
                     </div>
                     <button type="submit" class="btn btn-default">Guardar</button>
-                    <button type="button" class="btn btn-default" onclick="actualizarLoggin();">Actualizar</button>
-                    <button type="button" class="btn btn-default" onclick="eliminarLoggin();">Eliminar</button>
+                    <button type="button" class="btn btn-lg" onclick="actualizarLoggin();">Actualizar</button>
+                    <button type="button" class="btn btn-danger" onclick="eliminarLoggin();">Eliminar</button>
                 </form:form>
+            </div>
+            <div class="row-fluid">
+                <div class="form-group">
+                    <div class="tooltip right" role="tooltip">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-inner">Error</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                zcvzxcvzxczxv
+                <p>Tight pants next level keffiyeh <a href="#" data-toggle="tooltip" title="" data-original-title="Default tooltip">you probably</a> haven't heard of them. Photo booth beard raw denim letterpress vegan messenger bag stumptown. Farm-to-table seitan, mcsweeney's fixie sustainable quinoa 8-bit american apparel <a href="#" data-toggle="tooltip" title="Another tooltip">have a</a> terry richardson vinyl chambray. Beard stumptown, cardigans banh mi lomo thundercats. Tofu biodiesel williamsburg marfa, four loko mcsweeney's cleanse vegan chambray. A really ironic artisan <a href="#" data-toggle="tooltip" title="" data-original-title="Another one here too">whatever keytar</a>, scenester farm-to-table banksy Austin <a href="#" data-toggle="tooltip" title="The last tip!">twitter handle</a> freegan cred raw denim single-origin coffee viral.</p>
             </div>
             <div class="row-fluid">
                 <table class="table table-bordered table-striped table-hover table-condensed">
@@ -94,15 +112,15 @@
                     </thead>
                     <tbody>
                         <c:forEach items="${lstLogin}" var="elem">
-                        <tr>
-                            <td><c:out value="${elem.identificador}"/></td>
-                            <td><c:out value="${elem.texto}"/></td>
-                            <td><c:out value="${elem.entero}"/></td>
-                            <td><c:out value="${elem.decimal}"/></td>
-                            <td><c:out value="${elem.fecha}"/></td>
-                            <td><c:out value="${elem.tiempo}"/></td>
-                            <td><c:out value="${elem.timeStamp}"/></td>
-                        </tr>
+                            <tr>
+                                <td><c:out value="${elem.identificador}"/></td>
+                                <td><c:out value="${elem.texto}"/></td>
+                                <td><c:out value="${elem.entero}"/></td>
+                                <td><c:out value="${elem.decimal}"/></td>
+                                <td><c:out value="${elem.fecha}"/></td>
+                                <td><c:out value="${elem.tiempo}"/></td>
+                                <td><c:out value="${elem.timeStamp}"/></td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
