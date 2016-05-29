@@ -25,5 +25,6 @@
         <a href="WEB-INF/jsp/cu_login/inicio.jsp">inicio.jsp</a>
         <a href="newjsp.jsp">newjsp</a>
         </br><a href="<c:url value="cargarLogin.html"></c:url>">login</a>
+        </br><a href="<c:url value="cargarMtnCliente.html"></c:url>">login</a>
     </body>
 </html>
