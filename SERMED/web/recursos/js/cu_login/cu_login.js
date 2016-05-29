@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#vTexto").fadeOut();
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip1"]').tooltip();
 });
 
 $(function () {

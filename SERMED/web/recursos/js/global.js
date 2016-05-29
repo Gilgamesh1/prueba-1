@@ -1,5 +1,6 @@
 var expNumeros = /^([0-9])*$/;
 var expDecimales = /^([0-9])*\.([0-9])*$/;
+var expLetras = /^([a-zA-Z])*$/;
 
 function valNumeros(num) {
     var flag1, flag2;
@@ -30,6 +31,14 @@ function valEnteros(num) {
 
 function valDecimales(num) {
     if (expDecimales.test(num)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function valLetras(texto) {
+    if (expLetras.test(texto)) {
         return true;
     } else {
         return false;
