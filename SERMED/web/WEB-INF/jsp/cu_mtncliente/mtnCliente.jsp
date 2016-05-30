@@ -52,16 +52,23 @@
                     <div class="form-group">
                         <label for="t1" class="col-md-1">Nombre:</label>
                         <div class="col-md-5">
-                            <form:input id="t1" path="nombre" type="text" class="form-control"/><form:hidden path="id"/>
+                            <form:input id="t1" path="nombre" type="text" class="form-control"/><form:hidden id="t9" path="id"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="t2" class="col-md-1">Tipo de Documento:</label>
                         <div class="col-md-2 selectContainer">
                             <select id="t2" name="t2" class="form-control" >
-                                <option value="">Escoje</option>
-                                <option value="dni">DNI</option>
-                                <option value="ruc">RUC</option>
+                                <c:forEach items="${cmbClientes}" var="elem">
+                                    <c:choose>
+                                        <c:when test="${elem.seleccionado==true}">
+                                            <option value="${elem.id}" selected="true">${elem.val}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <option value="${elem.id}">${elem.val}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
                             </select>
                         </div>
                         <label for="t3" class="col-md-1">Nro. Documento:</label>
@@ -81,7 +88,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-default center-block">Guardar</button>
+                            <button type="button" class="btn btn-default center-block" onclick="guardar()">Guardar</button>
                         </div>
                     </div>
                 </form:form>
@@ -92,7 +99,7 @@
                 </div>
             </div>
             <div class="row-fluid">
-                <label for="t7" class="col-md-1 control-label">Documento</label>
+                <label for="t7" class="col-md-1 control-label">Nombre</label>
                 <div class="col-md-2">
                     <input id="t7" type="text" class="form-control"/>
                 </div>
@@ -101,7 +108,7 @@
                     <input id="t8" type="number" class="form-control"/>
                 </div>
                 <div class="col-md-1">
-                    <button type="button" class="btn btn-default">Buscar</button>
+                    <button type="button" class="btn btn-default" onclick="buscarClientes()">Buscar</button>
                 </div>
             </div>
             <br/>
@@ -132,11 +139,35 @@
                                 <td><c:out value="${elem.representante}"/></td>
                                 <td><c:out value="${elem.telefono}"/></td>
                                 <td><c:out value="${elem.celular}"/></td>
-                                <td><a href="#" class="btn btn-default" role="button">Actualizar</a></td>
+                                <td><a href="<c:url value="cargarUnCliente.html">
+                                           <c:param name="id" value="${elem.id}"></c:param>
+                                       </c:url>" class="btn btn-default" role="button">Actualizar</a>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
                 </table>
+            </div>
+            <div class="row-fluid">
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </body>

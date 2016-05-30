@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="ryv.app.hibernate.modelo.ClienteVO" table="cliente">
+        <id column="idcliente" name="id">
+            <generator class="sequence">
+                <param name="sequence">cliente_idcliente_seq</param>
+            </generator>
+        </id>
+        <property column="nombre" name="nombre"/>
+        <property column="documento" name="documento"/>
+        <property column="nrodocumento" name="nroDocumento"/>
+        <property column="representantelegal" name="representanteLegal"/>
+        <property column="telefono" name="telefono"/>
+        <property column="celular" name="celular"/>
+    </class>
+</hibernate-mapping>

@@ -15,5 +15,6 @@
     <property name="hibernate.c3p0.max_statements">50</property>
     <property name="hibernate.c3p0.idle_test_period">3000</property>
     <mapping resource="ryv/app/hibernate/modelo/EjmVO.hbm.xml"/>
+    <mapping resource="ryv/app/hibernate/modelo/ClienteVO.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

@@ -64,9 +64,11 @@ public class BaseImplDAO implements BaseDAO {
         log.debug("actualizar");
     }
 
-    /** Metodo para eliminar un registro de la base de datos
-    * @param entity objeto para eliminar
-    */
+    /**
+     * Metodo para eliminar un registro de la base de datos
+     *
+     * @param entity objeto para eliminar
+     */
     @Override
     public void eliminar(Object entity) {
         log.debug("eliminar");
@@ -87,6 +89,12 @@ public class BaseImplDAO implements BaseDAO {
         log.debug("eliminar");
     }
 
+    /**
+     * Devuelve todos los regsitros de una tabla
+     *
+     * @param clazz Objeto de la clase
+     * @return List
+     */
     @Override
     public List findAll(Class clazz) {
         log.debug("findAll");
@@ -97,9 +105,12 @@ public class BaseImplDAO implements BaseDAO {
         return list;
     }
 
-    /*Metodo para 
-    *
-    */
+    /**
+     * Metodo que perite obtener un registro de la base de datos
+     *
+     * @param clazz Objeto de la clase
+     * @param id PK del registro
+     */
     @Override
     public Object getEntity(Class clazz, int id) {
         log.debug("getEntity");
