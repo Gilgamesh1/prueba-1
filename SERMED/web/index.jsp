@@ -14,9 +14,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/jquery/jquery-1.11.2.min.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/jquery/jquery-ui-1.11.2/jquery-ui.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/bootstrap/js/bootstrap.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery-1.11.2.min.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap/js/bootstrap.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/global.js"/>"></script>
     </head>
     <body>
         <a href="/SEDMED/WEB-INF/jsp/cu_login/inicio.jsp"><div>TODO write content</div></a>
@@ -25,6 +25,7 @@
         <a href="WEB-INF/jsp/cu_login/inicio.jsp">inicio.jsp</a>
         <a href="newjsp.jsp">newjsp</a>
         </br><a href="<c:url value="cargarLogin.html"></c:url>">login</a>
-        </br><a href="<c:url value="cargarMtnCliente.html"></c:url>">login</a>
+        </br><a href="<c:url value="cargarMtnCliente.html"></c:url>">cliente</a>
+        </br><a href="<c:url value="/MtnCliente/cargarLista.html"></c:url>">listar clientes</a>
     </body>
 </html>
