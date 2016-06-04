@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import ryv.app.hibernate.modelo.ClienteVO;
 import ryv.app.negocio.cu_mtncliente.dao.MtnClienteImplDAO;
 import ryv.app.negocio.cu_mtncliente.dto.ClienteDTO;
+import ryv.app.negocio.paginacion.PaginacionImpl;
+import ryv.app.negocio.paginacion.dto.PaginacionDTO;
 
 /**
  *
@@ -24,6 +26,8 @@ public class MtnClienteImpl implements MtnCliente {
     private final Logger log = Logger.getLogger(MtnClienteImpl.class);
     @Autowired
     private MtnClienteImplDAO dao;
+    @Autowired
+    private PaginacionImpl page;
 
     @Override
     public void agregarCliente(ClienteDTO dto) {
@@ -72,9 +76,9 @@ public class MtnClienteImpl implements MtnCliente {
     @Override
     public ClienteDTO obtenerCliente(int id) {
         log.info("Inicio");
-        ClienteVO vo=(ClienteVO) dao.getEntity(ClienteVO.class, id);
-        ClienteDTO dto=new ClienteDTO(vo.getId(),vo.getNombre(),vo.getDocumento(),
-                vo.getNroDocumento(),vo.getRepresentanteLegal(),vo.getTelefono(),vo.getCelular());
+        ClienteVO vo = (ClienteVO) dao.getEntity(ClienteVO.class, id);
+        ClienteDTO dto = new ClienteDTO(vo.getId(), vo.getNombre(), vo.getDocumento(),
+                vo.getNroDocumento(), vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular());
         log.info("Fin");
         return dto;
     }
@@ -85,14 +89,41 @@ public class MtnClienteImpl implements MtnCliente {
         List<ClienteDTO> lst = new ArrayList<>();
         List<ClienteVO> lstVO = dao.buscarClientes(nombre, nroDocumento);
         if (!lstVO.isEmpty()) {
-            int nro=1;
+            int nro = 1;
             for (ClienteVO vo : lstVO) {
-                lst.add(new ClienteDTO(vo.getId(),nro,vo.getNombre(), vo.getDocumento() + "-" + vo.getNroDocumento(), vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular()));
+                lst.add(new ClienteDTO(vo.getId(), nro, vo.getNombre(), vo.getDocumento() + "-" + vo.getNroDocumento(), vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular()));
                 nro++;
             }
         }
         log.info("Fin");
         return lst;
+    }
+
+    @Override
+    public PaginacionDTO paginacionClientes(String nombre, String nroDocumento) {
+        log.info("Inicio");
+        long total = dao.buscarTotalClientes(nombre, nroDocumento);
+        PaginacionDTO dto = new PaginacionDTO();
+        if (total != 0) {
+            dto = this.page.calcular(total);
+        }
+        log.info("Fin");
+        return dto;
+    }
+
+    @Override
+    public PaginacionDTO paginacion(int val) {
+        return this.page.calcular(val);
+    }
+
+    @Override
+    public PaginacionDTO paginacionA(PaginacionDTO val) {
+        return this.page.grupoAnterior(val);
+    }
+
+    @Override
+    public PaginacionDTO paginacionS(PaginacionDTO val) {
+        return this.page.grupoSiguiente(val);
     }
 
 }

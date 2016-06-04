@@ -14,5 +14,14 @@
         <property column="representantelegal" name="representanteLegal"/>
         <property column="telefono" name="telefono"/>
         <property column="celular" name="celular"/>
+        <list name="direcciones" cascade="all" inverse="false">
+            <key>
+                <column name="idcliente_fk"/>   
+            </key>
+            <list-index>
+                <column name="orden"/>
+            </list-index>
+            <one-to-many class="ryv.app.hibernate.modelo.DireccionVO" />
+        </list>
     </class>
 </hibernate-mapping>

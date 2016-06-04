@@ -30,13 +30,13 @@
                 <div class="navbar navbar-default">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <a href="#" class="navbar-brand">Ejemplo</a>
+                            <a href="#" class="navbar-brand">SM</a>
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Archivo<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Nuevo</a></li>
-                                        <li><a href="#">Abrir</a></li>
+                                        <li><a href="#">Administrar Login</a></li>
+                                        <li><a href="<c:url value="cargarMtnCliente.html"></c:url>">Administrar Clientes</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Home</a></li>
@@ -66,14 +66,18 @@
                     </div>
                     <div class="form-group">
                         <label for="t4" class="col-md-1">Decimal</label>
-                        <div class="col-md-5"><form:input id="t4" path="decimal" type="text" class="form-control"/></div>
-                        <div class="col-md-3"><a href="#" data-toggle="tooltip1" data-placement="right" title="Debe de ingresar Numeros">&nbsp;</a></div>
+                        <div class="col-md-5">
+                            <a href="#" data-toggle="tooltip1" data-placement="right" title="Debe de ingresar solo numeros">
+                            <form:input id="t4" path="decimal" type="text" class="form-control"/>
+                            </a>
+                        </div>
+                        <div class="col-md-3">&nbsp;</div>
                     </div>
                     <div class="form-group">
                         <label for="t5" class="col-md-1">Fecha</label>
                         <div class="col-md-5">
                             <div class="input-append date" id="dp3" data-date="20-05-2016" data-date-format="dd-mm-yyyy">
-                                <input id="t5" class="span2" size="16" type="text" value="12-02-2012" readonly="">
+                                <form:input id="t5" path="fecha" class="span2" size="16" type="text" value="12-02-2012" readonly=""/>
                                 <span class="add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                             <!form--input id="t5" path="fecha" type="datetime" class="form-control"/-->
@@ -81,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <label for="t6" class="col-md-1">Hora</label>
-                        <div class="col-md-5"><form:input id="t6" path="tiempo" type="text" class="form-control"/></div>
+                        <div class="col-md-5"><form:input id="t6" path="tiempo" type="datetime-local" class="form-control"/></div>
                     </div>
                     <div class="form-group">
                         <label for="t7" class="col-md-1">Fecha y Hora</label>

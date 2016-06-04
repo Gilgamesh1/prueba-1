@@ -15,4 +15,5 @@ import ryv.app.hibernate.BaseDAO;
 public interface MtnClienteDAO extends BaseDAO {
 
     public List buscarClientes(String nombre, String nrodocumento);
+    public long buscarTotalClientes(String nombre, String nroDocumento) ;
 }

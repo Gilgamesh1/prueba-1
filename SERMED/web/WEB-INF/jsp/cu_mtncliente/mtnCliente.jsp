@@ -44,11 +44,14 @@
                         </div>
                     </div>
                 </div>
+                <div id="msj" class="row-fluid">
+                    <p id="msj-sucess" class="bg-success"><b>hola mundo</b></p>
+                </div>
                 <div class="row-fluid">
                     <div class="page-header"><h3>Administrar Clientes</h3></div>
                 </div>
                 <div class="row-fluid">
-                <form:form id="form" class="form-horizontal" action="insertarMtnCliente.html" modelAttribute="cliente" method="POST">
+                <form:form id="form" class="form-horizontal" action="insertar.html" modelAttribute="cliente" method="POST">
                     <div class="form-group">
                         <label for="t1" class="col-md-1">Nombre:</label>
                         <div class="col-md-5">
@@ -81,94 +84,69 @@
                         <div class="col-md-5"><form:input id="t4" path="representante" type="text" class="form-control"/></div>                        
                     </div>
                     <div class="form-group">
-                        <label for="t5" class="col-md-1">Tel&eacute;fono:</label>
-                        <div class="col-md-2"><form:input id="t5" path="telefono" type="number" class="form-control"/></div>
-                        <label for="t6" class="col-md-1">Celular:</label>
-                        <div class="col-md-2"><form:input id="t6" path="celular" type="number" class="form-control"/></div>
+                        <label for="t5" class="col-md-1">Correo Electr&oacute;nico:</label>
+                        <div class="col-md-5"><form:input id="t5" path="representante" type="text" class="form-control"/></div>                        
+                    </div>
+                    <div class="form-group">
+                        <label for="t6" class="col-md-1">Tel&eacute;fono:</label>
+                        <div class="col-md-2"><form:input id="t6" path="telefono" type="number" class="form-control"/></div>
+                        <label for="t7" class="col-md-1">Celular:</label>
+                        <div class="col-md-2"><form:input id="t7" path="celular" type="number" class="form-control"/></div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="page-header"><h4>Administrar Direcci&oacute;n</h4></div>
+                    </div>
+                    <div class="row-fluid">
+                        <label for="t8" class="col-md-1 control-label">Direcci&oacute;n:</label>
+                        <div class="col-md-2"><form:input id="t8" path="dir" type="text" class="form-control"/></div>
+                        <label for="t10" class="col-md-1 control-label">Ubicaci&oacute;n</label>
+                        <div class="col-md-2"><form:input id="t10" path="ubi" type="text" class="form-control"/><form:hidden id="t11" path="pos"/></div>
+                        <div class="col-md-2"><button class="btn btn-default" onclick="agregarDireccion();">Agregar</button></div>
+                        <div class="col-md-2"><button class="btn btn-default" onclick="json();">json</button></div>
+                    </div>
+                    <div class="row-fluid">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Direcci&oacute;n</th>
+                                    <th>Ciudad</th>
+                                    <th>Actualizar</th>
+                                    <th>Eliminar</th>
+                                </th>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${lstDirecciones}" var="elem">
+                                    <c:if test="${elem.mostrar}">
+                                        <tr>
+                                            <td><c:out value="${elem.nroTabla}"/></td>
+                                            <td><c:out value="${elem.direccion}"/></td>
+                                            <td><c:out value="${elem.ciudad}"/></td>
+                                            <td>
+                                                <a href="#" onclick="cargarDireccion(<c:out value="${elem.pos}"/>)" class="btn btn-primary" role="button">Actualizar</a>
+                                            </td>
+                                            <td>
+                                                <a href="<c:url value="/MtnCliente/eliminarDireccion.html"><c:param name="id"><c:out value="${elem.pos}"/></c:param></c:url>" class="btn btn-danger" role="button">Eliminiar</a>
+                                                <a href="#" onclick="eliminar(<c:out value="${elem.pos}"/>)" class="btn btn-danger" role="button">Eliminiar</a>
+                                            </td>
+                                        </tr>
+                                    </c:if>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <button type="button" class="btn btn-default center-block" onclick="guardar()">Guardar</button>
+                            <button type="button" class="btn btn-default center-block" onclick="guardarCliente()">Guardar</button>
                         </div>
                     </div>
                 </form:form>
             </div>
-            <div class="row-fluid">
-                <div class="span12">
-                    <div class="page-header"><h3>Buscar</h3></div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <label for="t7" class="col-md-1 control-label">Nombre</label>
-                <div class="col-md-2">
-                    <input id="t7" type="text" class="form-control"/>
-                </div>
-                <label for="t8" class="col-md-1 control-label">Nro. Documento</label>
-                <div class="col-md-2">
-                    <input id="t8" type="number" class="form-control"/>
-                </div>
-                <div class="col-md-1">
-                    <button type="button" class="btn btn-default" onclick="buscarClientes()">Buscar</button>
-                </div>
-            </div>
-            <br/>
-            <div class="row-fluid">
-                <div class="col-md-12">
-                    <div class="page-header"><h3>Lista de Clientes</h3></div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Documento</th>
-                            <th>Repre. Legal</th>
-                            <th>Tel&eacute;fono</th>
-                            <th>Celular</th>
-                            <th>Actualizar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${lstClientes}" var="elem">
-                            <tr>
-                                <td><c:out value="${elem.nroTabla}"/></td>
-                                <td><c:out value="${elem.nombre}"/></td>
-                                <td><c:out value="${elem.valDocumento}"/></td>
-                                <td><c:out value="${elem.representante}"/></td>
-                                <td><c:out value="${elem.telefono}"/></td>
-                                <td><c:out value="${elem.celular}"/></td>
-                                <td><a href="<c:url value="cargarUnCliente.html">
-                                           <c:param name="id" value="${elem.id}"></c:param>
-                                       </c:url>" class="btn btn-default" role="button">Actualizar</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-            <div class="row-fluid">
-                <nav>
-                    <ul class="pagination pagination-sm">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
         </div>
+        <form action="${pageContext.request.contextPath}/json.html">
+        <input type="text" name="b1"/>
+        <input type="button"  onclick="json();" value="test"/>
+        </form>
+		<div id="feedback"></div>
     </body>
 </html>

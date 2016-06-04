@@ -23,8 +23,12 @@ public class ClienteDTO {
     private List<ClienteDTO> lstClientes;
     private String valDocumento;
     private int nroTabla;
+    private String dir;
+    private String ubi;
+    private String pos;
 
     public ClienteDTO() {
+        this.pos="x";
     }
 
     public ClienteDTO(int id, String nombre, String documento, String nroDocumento, String representante, String telefono, String celular) {
@@ -196,6 +200,48 @@ public class ClienteDTO {
      */
     public void setNroTabla(int nroTabla) {
         this.nroTabla = nroTabla;
+    }
+
+    /**
+     * @return the dir
+     */
+    public String getDir() {
+        return dir;
+    }
+
+    /**
+     * @param dir the dir to set
+     */
+    public void setDir(String dir) {
+        this.dir = dir;
+    }
+
+    /**
+     * @return the ubi
+     */
+    public String getUbi() {
+        return ubi;
+    }
+
+    /**
+     * @param ubi the ubi to set
+     */
+    public void setUbi(String ubi) {
+        this.ubi = ubi;
+    }
+
+    /**
+     * @return the pos
+     */
+    public String getPos() {
+        return pos;
+    }
+
+    /**
+     * @param pos the pos to set
+     */
+    public void setPos(String pos) {
+        this.pos = pos;
     }
 
 }

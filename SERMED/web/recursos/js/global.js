@@ -1,6 +1,10 @@
 var expNumeros = /^([0-9])*$/;
 var expDecimales = /^([0-9])*\.([0-9])*$/;
 var expLetras = /^([a-zA-Z])*$/;
+var path = "/SERMED";
+
+$(document).ready(function () {
+});
 
 function valNumeros(num) {
     var flag1, flag2;

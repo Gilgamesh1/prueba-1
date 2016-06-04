@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="ryv.app.hibernate.modelo.DireccionVO" table="direccion">
+        <id column="iddireccion" name="id">
+            <generator class="sequence">
+                <param name="sequence">direccion_iddireccion_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="cliente" column="idcliente_fk"/><!-- not-null="true"/-->
+        <property column="nomdireccion" name="direccion"/>
+        <property column="ubicacion" name="ubicacion"/>
+    </class>
+</hibernate-mapping>
