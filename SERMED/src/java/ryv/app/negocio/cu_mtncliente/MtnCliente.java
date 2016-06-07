@@ -7,6 +7,7 @@ package ryv.app.negocio.cu_mtncliente;
 
 import java.util.List;
 import ryv.app.negocio.cu_mtncliente.dto.ClienteDTO;
+import ryv.app.negocio.cu_mtncliente.dto.DireccionDTO;
 import ryv.app.negocio.paginacion.dto.PaginacionDTO;
 
 /**
@@ -23,10 +24,10 @@ public interface MtnCliente {
 
     public ClienteDTO obtenerCliente(int id);
 
-    public List<ClienteDTO> obtenerClientes(String nombre, String nroDocumento);
+    public List<ClienteDTO> obtenerClientes(String nombre, String nroDocumento, int page);
 
-    public PaginacionDTO paginacionClientes(String nombre, String nroDocumento);
-    public PaginacionDTO paginacion(int val);
-    public PaginacionDTO paginacionA(PaginacionDTO val);
-    public PaginacionDTO paginacionS(PaginacionDTO val);
+    public long obtenerNroTotalClientes(String nombre, String nroDocumento);
+
+//    public PaginacionDTO paginacionClientes(String nombre, String nroDocumento);
+
 }

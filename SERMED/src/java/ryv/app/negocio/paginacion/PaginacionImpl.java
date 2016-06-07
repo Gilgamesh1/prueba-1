@@ -54,6 +54,7 @@ public class PaginacionImpl implements Paginacion {
         dto.setGrupoInicio(dto.getGrupoFin() - 1);
         dto.setInicio(dto.getGrupoFin());
         dto.setMostrarInicio(true);
+        dto.setSeleccionada(dto.getGrupoFin());
         if (dto.getResultado() > sgtGrupo) {
             dto.setFin(sgtGrupo);
             dto.setGrupoFin(sgtGrupo + 1);
@@ -74,12 +75,13 @@ public class PaginacionImpl implements Paginacion {
     @Override
     public PaginacionDTO grupoAnterior(PaginacionDTO dto) {
         log.info("Inicio - grupoAnterior");
-        long antGrupo = dto.getGrupoInicio();//;- 1
+        long antGrupo = dto.getGrupoInicio();
         dto.setGrupoInicio(dto.getGrupoInicio() - CONST_GRUPO);
         dto.setInicio(antGrupo - CONST_GRUPO + 1);
         dto.setFin(antGrupo);
         dto.setGrupoFin(antGrupo+1);
         dto.setMostrarFin(true);
+        dto.setSeleccionada(antGrupo);
         if ((antGrupo - CONST_GRUPO) == 0) {
             dto.setMostrarInicio(false);
         } else {

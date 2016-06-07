@@ -14,18 +14,21 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import ryv.app.negocio.cu_mtncliente.MtnCliente;
 import ryv.app.negocio.cu_mtncliente.dto.ClienteDTO;
 import ryv.app.negocio.comun.dto.ComboDTO;
 import ryv.app.negocio.cu_mtncliente.dto.DireccionDTO;
-import ryv.app.negocio.cu_mtncliente.dto.PruebaDTO;
+import ryv.app.negocio.cu_mtncliente.dto.QueryClienteDTO;
+import ryv.app.negocio.paginacion.PaginacionImpl;
 import ryv.app.negocio.paginacion.dto.PaginacionDTO;
 
 /**
@@ -33,16 +36,15 @@ import ryv.app.negocio.paginacion.dto.PaginacionDTO;
  * @author Raúl
  */
 @Controller
-//@SessionAttributes("lstDirecciones")
+@SessionAttributes({"page", "lstDirecciones"})
 public class MtnClienteAction {
-    
+
     private final Logger log = Logger.getLogger(MtnClienteAction.class);
     @Autowired
     private MtnCliente mtnCliente;
-    
-    public MtnClienteAction() {
-    }
-    
+    @Autowired
+    private PaginacionImpl paginacion;
+
     public List<ComboDTO> cargarCombo() {
         List<ComboDTO> cmb = new ArrayList<ComboDTO>();
         cmb.add(new ComboDTO("0", "Seleccione"));
@@ -50,120 +52,202 @@ public class MtnClienteAction {
         cmb.add(new ComboDTO("RUC", "RUC"));
         return cmb;
     }
-    
+
+    @RequestMapping(value = "/MtnCliente/cargarLista")
+    public String cargarListaMtnCliente(Model model, SessionStatus ss) {
+        log.info("Inicio - cargarListaMtnCliente");
+        ss.setComplete();
+        List<ClienteDTO> lst = mtnCliente.obtenerClientes("", "", 1);
+        long total = mtnCliente.obtenerNroTotalClientes("", "");
+        PaginacionDTO pDTO = this.paginacion.calcular(total);
+        ClienteDTO dto = new ClienteDTO();
+        model.addAttribute("cliente", dto);
+        model.addAttribute("lstClientes", lst);
+        model.addAttribute("page", pDTO);
+//        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
+//        mav.addObject("cliente", dto);
+//        mav.addObject("lstClientes", lst);
+//        mav.addObject("page", pDTO);
+        log.info("Fin - cargarListaMtnCliente");
+//        return mav;
+        return "cu_mtncliente/listarClientes";
+    }
+
+    @RequestMapping(value = "/MtnCliente/buscar")
+    public String buscarMtnCliente(@ModelAttribute("cliente") ClienteDTO dto, Model model) {
+        log.info("Inicio - buscarMtnCliente");
+        List<ClienteDTO> lst = this.mtnCliente.obtenerClientes(dto.getNombre(), dto.getNroDocumento(), 1);
+        long total = mtnCliente.obtenerNroTotalClientes(dto.getNombre(), dto.getNroDocumento());
+        PaginacionDTO pDTO = this.paginacion.calcular(total);
+        model.addAttribute("cliente", dto);
+        model.addAttribute("lstClientes", lst);
+        model.addAttribute("page", pDTO);
+        log.info("Fin - buscarMtnCliente");
+        return "cu_mtncliente/listarClientes";
+    }
+
+    @RequestMapping(value = "/MtnCliente/pagina", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<ClienteDTO> buscarSeleccionBCliente(@RequestBody QueryClienteDTO query) {
+        log.info("Inicio - buscarSeleccionBCliente");
+        List<ClienteDTO> lst = this.mtnCliente.obtenerClientes(query.getNombre(),
+                query.getDocumento(), query.getNro());
+        log.info("Fin - buscarSeleccionBCliente");
+        return lst;
+    }
+
+    @RequestMapping(value = "/MtnCliente/seleccionPagina", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public PaginacionDTO seleccionPagina(@RequestBody QueryClienteDTO query, Model model) {
+        log.info("Inicio - seleccionPagina");
+        Map map = model.asMap();
+        PaginacionDTO pDTO = (PaginacionDTO) map.get("page");
+        log.info(pDTO);
+        pDTO.setSeleccionada(query.getNro());
+        log.info(pDTO);
+        model.addAttribute("page", pDTO);
+        log.info("Fin - seleccionPagina");
+        return pDTO;
+    }
+
+    @RequestMapping(value = "/MtnCliente/seleccionGrupoAnterior", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public PaginacionDTO seleccionGrupoAnterior(@RequestBody QueryClienteDTO query, Model model) {
+        log.info("Inicio - seleccionGrupoAnterior");
+        Map map = model.asMap();
+        PaginacionDTO pDTO = (PaginacionDTO) map.get("page");
+        log.info(pDTO);
+        pDTO = this.paginacion.grupoAnterior(pDTO);
+        log.info(pDTO);
+        model.addAttribute("page", pDTO);
+        log.info("Fin - seleccionGrupoAnterior");
+        return pDTO;
+    }
+
+    @RequestMapping(value = "/MtnCliente/seleccionGrupoSiguiente", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public PaginacionDTO seleccionGrupoSiguiente(@RequestBody QueryClienteDTO query, Model model) {
+        log.info("Inicio - seleccionGrupoSiguiente");
+        Map map = model.asMap();
+        PaginacionDTO pDTO = (PaginacionDTO) map.get("page");
+        log.info(pDTO);
+        pDTO = this.paginacion.grupoSiguiente(pDTO);
+        log.info(pDTO);
+        model.addAttribute("page", pDTO);
+        log.info("Fin - seleccionGrupoSiguiente");
+        return pDTO;
+    }
+
     @RequestMapping(value = "/MtnCliente/cargar")
-    public ModelAndView cargarMtnCliente(HttpSession session) {
+    public String cargarMtnCliente(Model model) {
         log.info("Inicio - cargarMtnCliente");
         ClienteDTO dto = new ClienteDTO();
         List<ComboDTO> cmb = cargarCombo();
         List<DireccionDTO> lstDir = new ArrayList<DireccionDTO>();
-        session.setAttribute("lstDirecciones", lstDir);
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
-        mav.addObject("lstDirecciones", lstDir);
+        model.addAttribute("cliente", dto);
+        model.addAttribute("cmbClientes", cmb);
+        model.addAttribute("lstDirecciones", lstDir);
         log.info("Fin - cargarMtnCliente");
-        return mav;
+        return "cu_mtncliente/mtnCliente";
     }
-    
-    @RequestMapping(value = "/MtnCliente/cargarLista")
-    public ModelAndView cargarListaMtnCliente() {
-        log.info("Inicio - cargarListaMtnCliente");
-        List<ClienteDTO> lst = mtnCliente.buscarTodos();
-        PaginacionDTO pDTO = this.mtnCliente.paginacion(259);
-        log.info(pDTO);
-        pDTO.setSeleccionada(11);
-        pDTO = this.mtnCliente.paginacionS(pDTO);
-        log.info(pDTO);
-        pDTO.setSeleccionada(3);
-        pDTO = this.mtnCliente.paginacionA(pDTO);
-        log.info(pDTO);
-        ClienteDTO dto = new ClienteDTO();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
-        mav.addObject("cliente", dto);
-        mav.addObject("lstClientes", lst);
-        mav.addObject("page", pDTO);
-        log.info("Fin - cargarListaMtnCliente");
-        return mav;
+
+    @RequestMapping(value = "/MtnCliente/agregarDireccion", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<DireccionDTO> agregarDireccion(@RequestBody DireccionDTO dto, Model model) {
+        log.info("Inicio - agregarDireccion");
+        Map map = model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        dto.setId(0);
+        dto.setNroTabla(lst.size() + 1);
+        dto.setPos(lst.size());
+        dto.setMostrar(true);
+        dto.setAccion('N');
+        lst.add(dto);
+        log.info(lst);
+        model.addAttribute("lstDirecciones", lst);
+        log.info("Fin - agregarDireccion");
+        return lst;
     }
-    
-    @RequestMapping(value = "/MtnCliente/insertar", method = RequestMethod.POST)
-    public String insertarMtnCliente(@ModelAttribute("object") ClienteDTO dto, HttpServletRequest request) {
-        log.info("Inicio - insertarMtnCliente");
-        String val = (String) request.getParameter("t2");
-        dto.setDocumento(val);
+
+    @RequestMapping(value = "/MtnCliente/cargarDireccion", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public DireccionDTO cargarDireccion(@RequestBody DireccionDTO dto, Model model) {
+        log.info("Inicio - cargarDireccion");
+        Map map = model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        DireccionDTO direccion = lst.get(dto.getPos());
+        log.info(lst);
+        log.info("Fin - cargarDireccion");
+        return direccion;
+    }
+
+    @RequestMapping(value = "/MtnCliente/actualizarDireccion", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<DireccionDTO> actualizarDireccion(@RequestBody DireccionDTO dto, Model model) {
+        log.info("Inicio - actualizarDireccion");
+        Map map = model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        DireccionDTO direccion = lst.get(dto.getPos());
+        direccion.setDireccion(dto.getDireccion());
+        direccion.setCiudad(dto.getCiudad());
+        if (direccion.getId() == 0) {
+            direccion.setAccion('N');
+        } else {
+            direccion.setAccion('A');
+        }
+        model.addAttribute("lstDirecciones", lst);
+        log.info(lst);
+        log.info("Fin - actualizarDireccion");
+        return lst;
+    }
+
+    @RequestMapping(value = "/MtnCliente/eliminarDireccion", produces = "application/json", method = RequestMethod.POST)
+    @ResponseBody
+    public List<DireccionDTO> eliminarDireccion(@RequestBody DireccionDTO dto, Model model) {
+        log.info("Inicio - eliminarDireccion");
+        Map map = model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        int nro = 1;
+        for (DireccionDTO direccion : lst) {
+            if (direccion.getPos() == dto.getPos()) {
+                direccion.setMostrar(false);
+                direccion.setAccion('E');
+            } else {
+                direccion.setNroTabla(nro);
+                nro++;
+            }
+        }
+        model.addAttribute("lstDirecciones", lst);
+        log.info(lst);
+        log.info("Fin - eliminarDireccion");
+        return lst;
+    }
+
+    @RequestMapping(value = "/MtnCliente/agregarCliente")
+    public String agregarCliente(@ModelAttribute("cliente") ClienteDTO dto, Model model, HttpServletRequest request) {
+        log.info("Inicio - agregarCliente");
+        Map map = model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        int total = lst.size(), nroEliminados = 0;
+        //valido que por lo menos exista una dirección
+        for (DireccionDTO direccion : lst) {
+            if (direccion.getAccion() == 'E') {
+                nroEliminados++;
+            }
+        }
+        if (total == nroEliminados) {
+
+        }
+        String documento = request.getParameter("t3");
+        dto.setDocumento(documento);
+        dto.setLstDirecciones(lst);
         this.mtnCliente.agregarCliente(dto);
-        ClienteDTO cliente = new ClienteDTO();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
-        mav.addObject("cliente", cliente);
-        log.info("Fin - insertarMtnCliente");
+        log.info("Fin - agregarCliente");
         return "redirect:/MtnCliente/cargarLista.html";
     }
-    
-    @RequestMapping(value = "/MtnCliente/actualizar", method = RequestMethod.POST)
-    public String actualizarMtnCliente(@ModelAttribute("object") ClienteDTO dto, HttpServletRequest request) {
-        log.info("Inicio - actualizarMtnCliente");
-        String val = (String) request.getParameter("t2");
-        dto.setDocumento(val);
-        this.mtnCliente.actualizarCliente(dto);
-        ClienteDTO cliente = new ClienteDTO();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
-        mav.addObject("cliente", cliente);
-        log.info("Fin - actualizarMtnCliente");
-        return "redirect:/MtnCliente/cargarLista.html";
-    }
-    
-    @RequestMapping(value = "/MtnCliente/buscar")
-    public ModelAndView buscarMtnCliente(@ModelAttribute("object") ClienteDTO dto, HttpServletRequest request) {
-        log.info("Inicio - buscarMtnCliente");
-        List<ClienteDTO> lst = this.mtnCliente.obtenerClientes(dto.getNombre(), dto.getNroDocumento());
-        PaginacionDTO pDTO = this.mtnCliente.paginacionClientes(dto.getNombre(), dto.getNroDocumento());
-        List<ComboDTO> cmb = cargarCombo();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
-        mav.addObject("cliente", dto);
-        mav.addObject("lstClientes", lst);
-        mav.addObject("cmbClientes", cmb);
-        log.info("Fin - buscarMtnCliente");
-        return mav;
-    }
-    
-    @RequestMapping(value = "/json", produces = "application/json", method = RequestMethod.POST)
-    @ResponseBody 
-    public Map<String, Object> buscarMtnClienteJson(HttpServletRequest request) {
-        log.info("Inicio - buscarMtnClienteJson");
-        String val1=request.getParameter("b1");//@RequestParam("b1") String val1
-        log.info("**********val1: "+val1);
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<ClienteDTO> lst = this.mtnCliente.buscarTodos();//this.mtnCliente.obtenerClientes(val1, val2);
-        for (int i = 0; i < lst.size(); i++) {
-            ClienteDTO dto = lst.get(i);
-            map.put("nombre" + i, dto.getNombre());
-        }
-        log.info(map.toString());
-        log.info("Fin - buscarMtnClienteJson");
-        return map;
-    }
-    
-    
-    @RequestMapping(value = "/json1", produces = "application/json")
-    @ResponseBody 
-    public PruebaDTO ClienteJson(@RequestBody PruebaDTO dto) {
-        log.info("Inicio - ClienteJson");
-        log.info("**********val1: "+dto);
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<ClienteDTO> lst = this.mtnCliente.buscarTodos();//this.mtnCliente.obtenerClientes(val1, val2);
-        for (int i = 0; i < lst.size(); i++) {
-            ClienteDTO dto1 = lst.get(i);
-            map.put("nombre " + i, dto1.getNombre());
-        }
-        log.info(map.toString());
-        log.info("Fin - ClienteJson");
-        PruebaDTO t=new PruebaDTO();
-        return t;
-    }
-    
+        
     @RequestMapping(value = "/MtnCliente/cargarUnCliente")
-    public ModelAndView cargarUnCliente(HttpServletRequest request) {
+    public String cargarUnCliente(Model model,HttpServletRequest request) {
         log.info("Inicio - cargarUnCliente");
         int val1 = Integer.parseInt((String) request.getParameter("id"));
         ClienteDTO dto = this.mtnCliente.obtenerCliente(val1);
@@ -173,104 +257,23 @@ public class MtnClienteAction {
         } else {
             cmb.get(2).setSeleccionado(true);
         }
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
+        model.addAttribute("cliente", dto);
+        model.addAttribute("cmbClientes", cmb);
+        model.addAttribute("lstDirecciones", dto.getLstDirecciones());
         log.info("Fin - cargarUnCliente");
-        return mav;
+        return "cu_mtncliente/mtnCliente";
     }
-    
-    @RequestMapping(value = "/MtnCliente/agregarDireccion")
-    public ModelAndView agregarDireccion(HttpServletRequest request, HttpSession session) {
-        log.info("Inicio - agregarDireccion");
-        List<DireccionDTO> lstD = (List<DireccionDTO>) session.getAttribute("lstDirecciones");
-        if (lstD == null) {
-            lstD = new ArrayList<DireccionDTO>();
-//             session=request.getSession();
-        }
-        int total = lstD.size() + 1;
-        String direccion = request.getParameter("b1");
-        String ciudad = request.getParameter("b2");
-        lstD.add(new DireccionDTO(0, total, direccion, ciudad, true, 'N', total - 1));
-        session.setAttribute("lstDirecciones", lstD);
-        ClienteDTO dto = new ClienteDTO();
-        List<ComboDTO> cmb = cargarCombo();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
-        mav.addObject("lstDirecciones", lstD);
-        log.info("Fin - agregarDireccion");
-        return mav;
-    }
-    
-    
-    @RequestMapping(value = "/MtnCliente/cargarDireccion")
-    public ModelAndView cargarDireccion(HttpServletRequest request, HttpSession session) {
-        log.info("Inicio - cargarDireccion");
-        List<DireccionDTO> lstD = (List<DireccionDTO>) session.getAttribute("lstDirecciones");
-        int pos = Integer.parseInt(request.getParameter("b3"));
-        DireccionDTO dirDto = lstD.get(pos);
-        ClienteDTO dto = new ClienteDTO();
-        List<ComboDTO> cmb = cargarCombo();
-        dto.setDir(dirDto.getDireccion());
-        dto.setUbi(dirDto.getCiudad());
-        dto.setPos(request.getParameter("b3"));
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
-        mav.addObject("lstDirecciones", lstD);
-        log.info("Fin - cargarDireccion");
-        return mav;
-    }
-    
-    @RequestMapping(value = "/MtnCliente/actualizarDireccion")
-    public ModelAndView actualizarDireccion(HttpServletRequest request, HttpSession session) {
-        log.info("Inicio - actualizarDireccion");
-        List<DireccionDTO> lstD = (List<DireccionDTO>) session.getAttribute("lstDirecciones");
-        int pos = Integer.parseInt(request.getParameter("b3"));
-        String direccion = request.getParameter("b1");
-        String ciudad = request.getParameter("b2");
-        DireccionDTO dirDto = lstD.get(pos);
-        dirDto.setDireccion(direccion);
-        dirDto.setCiudad(ciudad);
-        dirDto.setAccion('A');
-        session.setAttribute("lstDirecciones", lstD);
-        ClienteDTO dto = new ClienteDTO();
-        List<ComboDTO> cmb = cargarCombo();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
-        mav.addObject("lstDirecciones", lstD);
-        log.info("Fin - actualizarDireccion");
-        return mav;
-    }
-    
-    @RequestMapping(value = "/MtnCliente/eliminarDireccion")
-    public ModelAndView eliminarDireccion(HttpServletRequest request, HttpSession session) {
-        log.info("Inicio - eliminarDireccion");
-        List<DireccionDTO> lstD = (List<DireccionDTO>) session.getAttribute("lstDirecciones");
-        if (lstD == null) {
-            lstD = new ArrayList<DireccionDTO>();
-        }
-        int nro = 1;
-        int pos = Integer.parseInt(request.getParameter("id"));
-        for (DireccionDTO dirDto : lstD) {
-            if (dirDto.getPos()== pos) {
-                dirDto.setMostrar(false);
-                dirDto.setAccion('E');
-            } else {
-                dirDto.setNroTabla(nro);
-                nro++;
-            }
-        }
-        session.setAttribute("lstDirecciones", lstD);
-        ClienteDTO dto = new ClienteDTO();
-        List<ComboDTO> cmb = cargarCombo();
-        ModelAndView mav = new ModelAndView("cu_mtncliente/mtnCliente");
-        mav.addObject("cliente", dto);
-        mav.addObject("cmbClientes", cmb);
-        mav.addObject("lstDirecciones", lstD);
-        log.info("Fin - eliminarDireccion");
-        return mav;
+
+    @RequestMapping(value = "/MtnCliente/modificarCliente")
+    public String modificarCliente(@ModelAttribute("cliente") ClienteDTO dto,Model model, HttpServletRequest request) {
+        log.info("Inicio - modificarCliente");
+        Map map=model.asMap();
+        List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        String documento = request.getParameter("t3");
+        dto.setDocumento(documento);
+        dto.setLstDirecciones(lst);
+        this.mtnCliente.actualizarCliente(dto);
+        log.info("Fin - modificarCliente");
+        return "redirect:/MtnCliente/cargarLista.html";
     }
 }

@@ -132,4 +132,9 @@ public class DireccionDTO implements Serializable{
         this.pos = pos;
     }
 
+    @Override
+    public String toString() {
+        return "DireccionDTO{" + "id=" + id + ", nroTabla=" + nroTabla + ", pos=" + pos + ", direccion=" + direccion + ", ciudad=" + ciudad + ", mostrar=" + mostrar + ", accion=" + accion + '}';
+    }
+
 }

@@ -21,14 +21,16 @@ public class ClienteDTO {
     private String telefono;
     private String celular;
     private List<ClienteDTO> lstClientes;
+    private List<DireccionDTO> lstDirecciones;
     private String valDocumento;
     private int nroTabla;
     private String dir;
     private String ubi;
-    private String pos;
+    private int pos;
+    private String email;
 
     public ClienteDTO() {
-        this.pos="x";
+        this.pos = 0;
     }
 
     public ClienteDTO(int id, String nombre, String documento, String nroDocumento, String representante, String telefono, String celular) {
@@ -233,15 +235,43 @@ public class ClienteDTO {
     /**
      * @return the pos
      */
-    public String getPos() {
+    public int getPos() {
         return pos;
     }
 
     /**
      * @param pos the pos to set
      */
-    public void setPos(String pos) {
+    public void setPos(int pos) {
         this.pos = pos;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the lstDirecciones
+     */
+    public List<DireccionDTO> getLstDirecciones() {
+        return lstDirecciones;
+    }
+
+    /**
+     * @param lstDirecciones the lstDirecciones to set
+     */
+    public void setLstDirecciones(List<DireccionDTO> lstDirecciones) {
+        this.lstDirecciones = lstDirecciones;
     }
 
 }

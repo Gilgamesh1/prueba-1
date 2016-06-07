@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Raúl
  */
-public class ClienteVO implements Serializable{
+public class ClienteVO implements Serializable {
 
     private int id;
     private String nombre;
@@ -21,12 +21,23 @@ public class ClienteVO implements Serializable{
     private String representanteLegal;
     private String telefono;
     private String celular;
+    private String email;
     private List<DireccionVO> direcciones;
 
     public ClienteVO() {
     }
 
-    public ClienteVO(int id, String nombre, String documento, String nroDocumento, String representanteLegal, String telefono, String celular) {
+    public ClienteVO(String nombre, String documento, String nroDocumento, String representanteLegal, String telefono, String celular, String email) {
+        this.nombre = nombre;
+        this.documento = documento;
+        this.nroDocumento = nroDocumento;
+        this.representanteLegal = representanteLegal;
+        this.telefono = telefono;
+        this.celular = celular;
+        this.email = email;
+    }
+
+    public ClienteVO(int id, String nombre, String documento, String nroDocumento, String representanteLegal, String telefono, String celular, String email) {
         this.id = id;
         this.nombre = nombre;
         this.documento = documento;
@@ -34,6 +45,7 @@ public class ClienteVO implements Serializable{
         this.representanteLegal = representanteLegal;
         this.telefono = telefono;
         this.celular = celular;
+        this.email = email;
     }
 
     /**
@@ -132,6 +144,20 @@ public class ClienteVO implements Serializable{
      */
     public void setCelular(String celular) {
         this.celular = celular;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     /**

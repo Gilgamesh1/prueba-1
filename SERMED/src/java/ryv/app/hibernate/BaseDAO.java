@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface BaseDAO {
     
+    static final int CONST_PAGE = 10;
+    
     public void insertar(Object entity);
 
     public void actualizar(Object entity);

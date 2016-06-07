@@ -14,6 +14,7 @@
         <property column="representantelegal" name="representanteLegal"/>
         <property column="telefono" name="telefono"/>
         <property column="celular" name="celular"/>
+        <property column="email" name="email"/>
         <list name="direcciones" cascade="all" inverse="false">
             <key>
                 <column name="idcliente_fk"/>   
