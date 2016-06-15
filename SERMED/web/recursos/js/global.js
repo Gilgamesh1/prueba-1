@@ -1,6 +1,7 @@
 var expNumeros = /^([0-9])*$/;
 var expDecimales = /^([0-9])*\.([0-9])*$/;
 var expLetras = /^([a-zA-Z])*$/;
+var expEmail = /^[a-zA-Z0-9_\.\-]+@[a-zA-Z0-9\-]+\.[a-zA-Z0-9\-\.]+$/;
 var path = "/SERMED";
 
 $(document).ready(function () {
@@ -43,6 +44,14 @@ function valDecimales(num) {
 
 function valLetras(texto) {
     if (expLetras.test(texto)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function valEmail(texto) {
+    if (expEmail.test(texto)) {
         return true;
     } else {
         return false;

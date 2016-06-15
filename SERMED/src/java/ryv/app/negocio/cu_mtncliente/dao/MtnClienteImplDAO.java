@@ -6,13 +6,17 @@
 package ryv.app.negocio.cu_mtncliente.dao;
 
 import java.util.List;
+import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.jboss.logging.Logger;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ryv.app.hibernate.BaseImplDAO;
+import ryv.app.hibernate.modelo.ClienteVO;
 
 /**
  *
@@ -40,7 +44,7 @@ public class MtnClienteImplDAO extends BaseImplDAO implements MtnClienteDAO {
             String hql = "select c.id,c.nombre,c.documento,c.nroDocumento,c.representanteLegal,c.telefono,c.celular,"
                     + "d.direccion,d.ubicacion from ClienteVO c inner join c.direcciones d";
             if (!nombre.isEmpty() || !nroDocumento.isEmpty()) {
-                hql += " where";// c.id=d.cliente.id";
+                hql += " where";
                 if (!nombre.isEmpty()) {
                     hql += " upper(c.nombre) like '%" + nombre.toUpperCase() + "%'";
                 }
@@ -75,7 +79,7 @@ public class MtnClienteImplDAO extends BaseImplDAO implements MtnClienteDAO {
             Session s = sF.getCurrentSession();
             String hql = "select count(*) from ClienteVO c inner join c.direcciones d";
             if (!nombre.isEmpty() || !nroDocumento.isEmpty()) {
-                hql += " where";//c.id=d.cliente.id";
+                hql += " where";
                 if (!nombre.isEmpty()) {
                     hql += " upper(nombre) like '%" + nombre.toUpperCase() + "%'";
                 }
@@ -86,6 +90,9 @@ public class MtnClienteImplDAO extends BaseImplDAO implements MtnClienteDAO {
             Query query = s.createQuery(hql);
             resultado = (long) query.list().get(0);
             log.info("Total de registro es: " + resultado);
+//            Criteria crit=s.createCriteria(ClienteVO.class);
+//            crit.add(Restrictions.eq(nombre, hql));
+//            crit.addOrder(new Order());
         } catch (Exception e) {
             log.debug("Inicio de Error");
             log.debug(e.getMessage());

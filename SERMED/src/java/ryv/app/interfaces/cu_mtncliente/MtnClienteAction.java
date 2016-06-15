@@ -6,11 +6,9 @@
 package ryv.app.interfaces.cu_mtncliente;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -54,9 +51,10 @@ public class MtnClienteAction {
     }
 
     @RequestMapping(value = "/MtnCliente/cargarLista")
-    public String cargarListaMtnCliente(Model model, SessionStatus ss) {
+    public String cargarListaMtnCliente(Model model) {//, SessionStatus ss
         log.info("Inicio - cargarListaMtnCliente");
-        ss.setComplete();
+//        ss.setComplete();
+        List<ClienteDTO> lst1 = mtnCliente.buscarTodos();
         List<ClienteDTO> lst = mtnCliente.obtenerClientes("", "", 1);
         long total = mtnCliente.obtenerNroTotalClientes("", "");
         PaginacionDTO pDTO = this.paginacion.calcular(total);
@@ -64,12 +62,7 @@ public class MtnClienteAction {
         model.addAttribute("cliente", dto);
         model.addAttribute("lstClientes", lst);
         model.addAttribute("page", pDTO);
-//        ModelAndView mav = new ModelAndView("cu_mtncliente/listarClientes");
-//        mav.addObject("cliente", dto);
-//        mav.addObject("lstClientes", lst);
-//        mav.addObject("page", pDTO);
         log.info("Fin - cargarListaMtnCliente");
-//        return mav;
         return "cu_mtncliente/listarClientes";
     }
 
@@ -157,8 +150,17 @@ public class MtnClienteAction {
         log.info("Inicio - agregarDireccion");
         Map map = model.asMap();
         List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
+        int nro = 1;
+//        } else {
+        for (DireccionDTO dir : lst) {
+            if (dir.getAccion() != 'E') {
+                dir.setNroTabla(nro);
+                nro++;
+            }
+        }
+//        }
         dto.setId(0);
-        dto.setNroTabla(lst.size() + 1);
+        dto.setNroTabla(nro);
         dto.setPos(lst.size());
         dto.setMostrar(true);
         dto.setAccion('N');
@@ -245,9 +247,9 @@ public class MtnClienteAction {
         log.info("Fin - agregarCliente");
         return "redirect:/MtnCliente/cargarLista.html";
     }
-        
+
     @RequestMapping(value = "/MtnCliente/cargarUnCliente")
-    public String cargarUnCliente(Model model,HttpServletRequest request) {
+    public String cargarUnCliente(Model model, HttpServletRequest request) {
         log.info("Inicio - cargarUnCliente");
         int val1 = Integer.parseInt((String) request.getParameter("id"));
         ClienteDTO dto = this.mtnCliente.obtenerCliente(val1);
@@ -265,9 +267,9 @@ public class MtnClienteAction {
     }
 
     @RequestMapping(value = "/MtnCliente/modificarCliente")
-    public String modificarCliente(@ModelAttribute("cliente") ClienteDTO dto,Model model, HttpServletRequest request) {
+    public String modificarCliente(@ModelAttribute("cliente") ClienteDTO dto, Model model, HttpServletRequest request) {
         log.info("Inicio - modificarCliente");
-        Map map=model.asMap();
+        Map map = model.asMap();
         List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
         String documento = request.getParameter("t3");
         dto.setDocumento(documento);
@@ -276,4 +278,40 @@ public class MtnClienteAction {
         log.info("Fin - modificarCliente");
         return "redirect:/MtnCliente/cargarLista.html";
     }
+    
+    @RequestMapping(value = "/x")
+    public String x() {
+        return "interfaces/inicio";
+    }
+    
+    @RequestMapping(value = "/y")
+    public String y() {
+        return "interfaces/mtnycalibracion";
+    }
+    
+    @RequestMapping(value = "/z")
+    public String z() {
+        return "interfaces/ingresoactividad";
+    }
+    
+    @RequestMapping(value = "/a")
+    public String a() {
+        return "interfaces/ingresodedatos";
+    }
+    
+    @RequestMapping(value = "/b")
+    public String b() {
+        return "interfaces/mantenimiento";
+    }
+    
+    @RequestMapping(value = "/c")
+    public String c() {
+        return "interfaces/caracterizacion";
+    }
+    
+    @RequestMapping(value = "/d")
+    public String d() {
+        return "interfaces/equipomedicion";
+    }
 }
+    

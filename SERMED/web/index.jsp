@@ -27,5 +27,13 @@
         </br><a href="<c:url value="cargarLogin.html"></c:url>">login</a>
         </br><a href="<c:url value="cargarMtnCliente.html"></c:url>">cliente</a>
         </br><a href="<c:url value="/MtnCliente/cargarLista.html"></c:url>">listar clientes</a>
+        </br><a href="<c:url value="x.html"></c:url>">inicio</a>
+        </br><a href="<c:url value="y.html"></c:url>">mtnycalibracion</a>
+        </br><a href="<c:url value="z.html"></c:url>">ingresoactividad</a>
+        </br><a href="<c:url value="a.html"></c:url>">ingresodedatos</a>
+        </br><a href="<c:url value="b.html"></c:url>">mantenimiento</a>
+        </br><a href="<c:url value="c.html"></c:url>">caracterizacion</a>
+        </br><a href="<c:url value="d.html"></c:url>">equipo de medicion</a>
+        &nbsp;
     </body>
 </html>

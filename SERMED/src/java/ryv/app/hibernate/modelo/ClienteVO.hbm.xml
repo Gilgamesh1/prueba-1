@@ -15,7 +15,11 @@
         <property column="telefono" name="telefono"/>
         <property column="celular" name="celular"/>
         <property column="email" name="email"/>
-        <list name="direcciones" cascade="all" inverse="false">
+        <set name="direcciones" cascade="all" lazy="true">
+            <key column="idcliente_fk"></key>
+            <one-to-many class="ryv.app.hibernate.modelo.DireccionVO"/>
+        </set>
+        <!--<list name="direcciones" cascade="all" inverse="false">
             <key>
                 <column name="idcliente_fk"/>   
             </key>
@@ -23,6 +27,6 @@
                 <column name="orden"/>
             </list-index>
             <one-to-many class="ryv.app.hibernate.modelo.DireccionVO" />
-        </list>
+        </list>-->
     </class>
 </hibernate-mapping>

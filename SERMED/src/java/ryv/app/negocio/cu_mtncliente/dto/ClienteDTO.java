@@ -33,7 +33,7 @@ public class ClienteDTO {
         this.pos = 0;
     }
 
-    public ClienteDTO(int id, String nombre, String documento, String nroDocumento, String representante, String telefono, String celular) {
+    public ClienteDTO(int id, String nombre, String documento, String nroDocumento, String representante, String telefono, String celular, String email) {
         this.id = id;
         this.nombre = nombre;
         this.documento = documento;
@@ -41,6 +41,7 @@ public class ClienteDTO {
         this.representante = representante;
         this.telefono = telefono;
         this.celular = celular;
+        this.email = email;
     }
 
     /**

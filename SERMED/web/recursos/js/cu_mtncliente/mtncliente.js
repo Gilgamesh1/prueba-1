@@ -1,13 +1,38 @@
 $(document).ready(function () {
-    $("#msj-sucess").fadeOut();
-    $("#msj-info").removeClass("bg-info");
-    $("#msj-info").addClass("bg-warning");
-    console.log($("#msj-sucess").text());
-    $("#msj-sucess").text("jajajajaja");
-    console.log($("#msj-sucess").text());
-    $("#msj-sucess").fadeIn();
 });
 
+$(window).on('load',function(){
+     $('form').validate({
+        rules: {
+            firstname: {
+                minlength: 3,
+                maxlength: 15,
+                required: true
+            },
+            lastname: {
+                minlength: 3,
+                maxlength: 15,
+                required: true
+            }
+        },
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+    });
+    
 function anterior(nro) {
     var datos = {nombre: $("#t1").val(), documento: $("#t2").val(), nro: nro};
     console.log(datos);
@@ -152,8 +177,8 @@ function cargarTabla(data) {
         filas += "<tr><td>" + val['nroTabla'] + "</td><td>" + val['nombre'] +
                 "</td><td>" + val['dir'] + "</td><td>" + val['ubi'] + "</td><td>" + val['valDocumento'] +
                 "</td><td>" + val['representante'] + "</td><td>" + val['telefono'] + "</td><td>" + val['celular'] + "</td><td>" +
-                "<a href='/MtnCliente/cargarUnCliente.html?id='" + val['id']
-                + " class='btn btn-default' role='button'>Actualizar</a></td></tr>";
+                "<a href='" + $("#context").val() + "/MtnCliente/cargarUnCliente.html?id=" + val['id']
+                + "' class='btn btn-default' role='button'>Actualizar</a></td></tr>";
     }
     $("#contenido").remove();
     var tbody = $('<tbody/>', {'id': 'contenido'});
@@ -181,7 +206,6 @@ function cargarPaginacion(data) {
         li += "<li><a href='#' onclick='anterior(" + data['grupoFin'] + ");' aria-label='Previous'>";
         li += "<span aria-hidden='true'>&raquo;</span></a></li>";
     }
-//            console.log("valor de li: ",li);
     $("#upaginacion").remove();
     var ul = $('<ul/>', {'id': 'upaginacion', 'class': 'pagination'});
     $("#npaginacion").append(ul);
@@ -220,7 +244,6 @@ function guardarDireccion() {
         });
     }
 }
-
 
 function cargarDireccion(pos) {
     var datos = {pos: pos};
@@ -298,8 +321,70 @@ function guardarCliente() {
     } else {
         url += "/MtnCliente/modificarCliente.html";
     }
+    var error=validacion();
+    if(error==""){
+        var ul = $('<ul/>', {'id': 'msj-ul'});
+        error += "<li>Los datos son correctos</li>";
+        $("#msj").append(ul);
+        $('#msj-ul').append(error);
+        $("#msj").removeClass().addClass("row-fluid bg-success");
+    }
     var form = $("#form");
     form.attr("action", url);
     form.submit();
-    form.attr("action", "insertarMtnCliente.html");
+}
+
+function validacion() {
+    var error = "";
+    if ($("#t1").val().length == 0 || $("#t1").val().length > 50) {
+        error += "<li>Debe de un ingresar un nombre y no debe de exceder de 50 caracteres</li>";
+        $("#c1").removeClass().addClass("form-group has-error");
+    } else {
+        $("#c1").removeClass().addClass("form-group");
+    }
+    if ($("#t3").val() == "0") {
+        error += "<li>Debe de seleccionar un Tipo de Documento</li>";
+        $("#c2").removeClass().addClass("form-inline has-error");
+        $("#c3").removeClass().addClass("form-inline has-error");
+    } else if ($("#t3").val() == "DNI" && $("#t4").val().length != 8) {
+        error += "<li>El numero de documento es incorrecto</li>";
+        $("#c2").removeClass().addClass("form-inline");
+        $("#c3").removeClass().addClass("form-inline has-error");
+    } else if ($("#t3").val() == "RUC" && $("#t4").val().length != 11) {
+        error += "<li>El numero de documento es incorrecto</li>";
+        $("#c2").removeClass().addClass("form-inline");
+        $("#c3").removeClass().addClass("form-inline has-error");
+    } else {
+        $("#c2").removeClass().addClass("form-inline");
+        $("#c3").removeClass().addClass("form-inline");
+    }
+    if ($("#t5").val().length == 0 || $("#t5").val().length > 50) {
+        error += "<li>Debe de un ingresar un representante legal y no debe de exceder de 50 caracteres</li>";
+        $("#c4").removeClass().addClass("form-group has-error");
+    } else {
+        $("#c4").removeClass().addClass("form-group");
+    }
+    if (valEmail($("#t6").val())) {
+        $("#c5").removeClass().addClass("form-group");
+    } else {
+        error += "<li>Debe de un ingresar un Email correcto</li>";
+        $("#c5").removeClass().addClass("form-group has-error");
+    }
+    $('#msj-ul').remove();
+    if (error != "") {
+        var ul = $('<ul/>', {'id': 'msj-ul'});
+        $("#msj").append(ul);
+        $('#msj-ul').append(error);
+        $("#msj").removeClass().addClass("row-fluid bg-danger");
+    }
+    return error;
+//    console.log($("#myModalLabel").val());
+//    $("#myModalLabel").val("Errores");
+//    $('body').addClass("modal-open");
+//    $("#myModal").removeClass().addClass("modal fade in");
+//    $("#myModal").css({"display": "block", "padding-right": "17px"});
+    $("#myModal").on('shown.bs.modal', function (e) {
+          var element = $(e.relatedTarget);
+          var type = element.data('alert');
+        });
 }

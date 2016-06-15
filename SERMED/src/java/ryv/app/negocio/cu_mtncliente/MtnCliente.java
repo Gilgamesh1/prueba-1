@@ -28,6 +28,4 @@ public interface MtnCliente {
 
     public long obtenerNroTotalClientes(String nombre, String nroDocumento);
 
-//    public PaginacionDTO paginacionClientes(String nombre, String nroDocumento);
-
 }

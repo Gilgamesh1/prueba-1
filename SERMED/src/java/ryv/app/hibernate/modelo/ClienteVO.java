@@ -7,6 +7,7 @@ package ryv.app.hibernate.modelo;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -22,7 +23,8 @@ public class ClienteVO implements Serializable {
     private String telefono;
     private String celular;
     private String email;
-    private List<DireccionVO> direcciones;
+//    private List<DireccionVO> direcciones;
+    private Set<DireccionVO> direcciones;
 
     public ClienteVO() {
     }
@@ -163,14 +165,14 @@ public class ClienteVO implements Serializable {
     /**
      * @return the direcciones
      */
-    public List<DireccionVO> getDirecciones() {
+    public Set<DireccionVO> getDirecciones() {
         return direcciones;
     }
 
     /**
      * @param direcciones the direcciones to set
      */
-    public void setDirecciones(List<DireccionVO> direcciones) {
+    public void setDirecciones(Set<DireccionVO> direcciones) {
         this.direcciones = direcciones;
     }
 

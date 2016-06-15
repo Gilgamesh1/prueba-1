@@ -26,6 +26,12 @@ public class DireccionVO implements Serializable {
         this.ubicacion = ubicacion;
     }
 
+    public DireccionVO(ClienteVO cliente, String direccion, String ubicacion) {
+        this.cliente = cliente;
+        this.direccion = direccion;
+        this.ubicacion = ubicacion;
+    }
+
     public DireccionVO(int id, String direccion, String ubicacion) {
         this.id = id;
         this.direccion = direccion;

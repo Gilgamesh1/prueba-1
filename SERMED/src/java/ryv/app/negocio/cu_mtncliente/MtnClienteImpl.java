@@ -6,8 +6,10 @@
 package ryv.app.negocio.cu_mtncliente;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,23 +51,6 @@ public class MtnClienteImpl implements MtnCliente {
                 nro++;
                 lst.add(cliente);
             }
-//            for(Object[] obj:lstVO){
-//                cliente.setId(0);
-//            }
-//            for (ClienteVO vo : lstVO) {
-//                ClienteDTO cliente = new ClienteDTO(vo.getId(), nro, vo.getNombre(),
-//                        vo.getDocumento() + "-" + vo.getNroDocumento(),
-//                        vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular());
-//                if (vo.getDirecciones().size() != 0) {
-//                    for (DireccionVO dirVO:vo.getDirecciones()){
-//                        cliente.setDir(dirVO.getDireccion());
-//                        cliente.setUbi(dirVO.getUbicacion());
-//                    }
-//                } else {
-//                    cliente.setDir("");
-//                    cliente.setUbi("");
-//                }
-//            }
         }
         log.info("Fin - obtenerClientes");
         return lst;
@@ -83,13 +68,16 @@ public class MtnClienteImpl implements MtnCliente {
         log.info("Inicio -  agregarCliente");
         ClienteVO vo = new ClienteVO(dto.getNombre(), dto.getDocumento(), dto.getNroDocumento(),
                 dto.getRepresentante(), dto.getTelefono(), dto.getCelular(), dto.getEmail());
-        List<DireccionVO> lst = new ArrayList<DireccionVO>();
+//        List<DireccionVO> lst = new ArrayList<DireccionVO>();
+        Set<DireccionVO> set = new HashSet();;
         for (DireccionDTO direccion : dto.getLstDirecciones()) {
             if (direccion.isMostrar() && (direccion.getAccion() == 'N' || direccion.getAccion() == 'A')) {
-                lst.add(new DireccionVO(direccion.getDireccion(), direccion.getCiudad()));
+                set.add(new DireccionVO(direccion.getDireccion(), direccion.getCiudad()));
+//                lst.add(new DireccionVO(direccion.getDireccion(), direccion.getCiudad()));
             }
         }
-        vo.setDirecciones(lst);
+//        vo.setDirecciones(lst);
+        vo.setDirecciones(set);
         dao.insertar(vo);
         log.info("Fin -  agregarCliente");
     }
@@ -105,9 +93,36 @@ public class MtnClienteImpl implements MtnCliente {
         vo.setTelefono(dto.getTelefono());
         vo.setCelular(dto.getCelular());
         vo.setEmail(dto.getEmail());
-        List<DireccionVO>lst=new ArrayList<DireccionVO>();
-        for(DireccionDTO direccion :dto.getLstDirecciones()){
-            lst.add(new DireccionVO(direccion.getId(),direccion.getDireccion(),direccion.getCiudad()));
+//        dao.actualizar(vo);
+//        List<DireccionVO> lst = new ArrayList<DireccionVO>();
+        Set<DireccionVO> lst = new HashSet<DireccionVO>();
+        for (DireccionDTO direccion : dto.getLstDirecciones()) {
+            if (direccion.isMostrar() && (direccion.getAccion() == 'A' || direccion.getAccion() == 'O')) {
+                DireccionVO direccionVO=(DireccionVO) dao.getEntity(DireccionVO.class, direccion.getId());
+                direccionVO.setDireccion(direccion.getDireccion());
+                direccionVO.setUbicacion(direccion.getCiudad());
+                direccionVO.setCliente(vo);
+                lst.add(direccionVO);
+            } else if (direccion.isMostrar() && direccion.getAccion() == 'N') {
+                lst.add(new DireccionVO(direccion.getDireccion(), direccion.getCiudad()));
+            } else if (!direccion.isMostrar() && direccion.getAccion() == 'E' && direccion.getId()!=0) {
+                DireccionVO direccionVO = (DireccionVO) dao.getEntity(DireccionVO.class, direccion.getId());
+                dao.eliminar(direccionVO);
+            }
+//            if (direccion.isMostrar() && (direccion.getAccion() == 'A' || direccion.getAccion() == 'O')) {
+////                lst.add(new DireccionVO(direccion.getId(), direccion.getDireccion(), direccion.getCiudad()));
+//                DireccionVO direccionVO = (DireccionVO) dao.getEntity(DireccionVO.class, direccion.getId());
+//                direccionVO.setDireccion(direccion.getDireccion());
+//                direccionVO.setUbicacion(direccion.getCiudad());
+//                dao.actualizar(direccionVO);
+//            } else if (direccion.isMostrar() && direccion.getAccion() == 'N') {
+//                DireccionVO direccionVO = new DireccionVO(vo, direccion.getDireccion(), direccion.getCiudad());
+//                dao.insertar(direccionVO);
+//            }
+//            if (direccion.getId() != 0 && direccion.getAccion() == 'E') {
+//                DireccionVO direccionVO = (DireccionVO) dao.getEntity(DireccionVO.class, direccion.getId());
+//                dao.eliminar(direccionVO);
+//            }
         }
         vo.setDirecciones(lst);
         dao.actualizar(vo);
@@ -135,12 +150,12 @@ public class MtnClienteImpl implements MtnCliente {
         log.info("Inicio");
         ClienteVO vo = (ClienteVO) dao.getEntity(ClienteVO.class, id);
         ClienteDTO dto = new ClienteDTO(vo.getId(), vo.getNombre(), vo.getDocumento(),
-                vo.getNroDocumento(), vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular());
-        List<DireccionDTO>lst=new ArrayList<DireccionDTO>();
-        int nro=1,pos=0;
-        for(DireccionVO direccion:vo.getDirecciones()){
-            lst.add(new DireccionDTO(direccion.getId(),nro,direccion.getDireccion(),
-                    direccion.getUbicacion(),true,'O',pos));
+                vo.getNroDocumento(), vo.getRepresentanteLegal(), vo.getTelefono(), vo.getCelular(), vo.getEmail());
+        List<DireccionDTO> lst = new ArrayList<DireccionDTO>();
+        int nro = 1, pos = 0;
+        for (DireccionVO direccion : vo.getDirecciones()) {
+            lst.add(new DireccionDTO(direccion.getId(), nro, direccion.getDireccion(),
+                    direccion.getUbicacion(), true, 'O', pos));
             nro++;
             pos++;
         }
@@ -148,16 +163,4 @@ public class MtnClienteImpl implements MtnCliente {
         log.info("Fin");
         return dto;
     }
-
-//    @Override
-//    public PaginacionDTO paginacionClientes(String nombre, String nroDocumento) {
-//        log.info("Inicio");
-//        long total = dao.buscarTotalClientes(nombre, nroDocumento);
-//        PaginacionDTO dto = new PaginacionDTO();
-//        if (total != 0) {
-//            dto = this.page.calcular(total);
-//        }
-//        log.info("Fin");
-//        return dto;
-//    }
 }
