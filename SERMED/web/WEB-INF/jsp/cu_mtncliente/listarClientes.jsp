@@ -18,12 +18,6 @@
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_mtncliente/mtncliente.js"/>"></script>
         <link href="<c:url value="/recursos/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
         <link href="<c:url value="/recursos/bootstrap/css/bootstrap-theme.css"/>" rel="stylesheet">
-        <style type="text/css">
-            .page-header{
-                margin-top: 10px;
-                margin-bottom: 5px;
-            }
-        </style>
     </head>
     <body>
         <input id="context" type="hidden" value="${pageContext.request.contextPath}"></input>
@@ -59,22 +53,11 @@
                     </div>
                 </fieldset>
             </f:form>
-            <!-->
             <div class="row-fluid">
                 <div class="col-md-12">
-                    &nbsp;
-                </div>
-            </div></!-->
-            <div class="row-fluid">
-                <div class="col-md-12">
-                    <a href="<c:url value="/MtnCliente/cargar.html"/>" class="btn btn-primary center-block" role="button">Crear un Nuevo Cliente</a>
+                    <center><a href="<c:url value="/MtnCliente/cargar.html"/>" class="btn btn-primary center-block" role="button">Crear un Nuevo Cliente</a></center>
                 </div>
             </div>
-            <!--<div class="row-fluid">
-                <div class="col-md-12">
-                    <div class="page-header"><h3></h3></div>
-                </div>
-            </div>-->
             <div class="row-fluid">
                 <fildset>
                     <legend>Lista de Clientes</legend>
