@@ -17,11 +17,13 @@
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery-1.11.2.min.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery.validate.min.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap/js/bootstrap.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap/js/validator.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap-table-develop/js/bootstrap-table.js"/>"></script>
+        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap-table-develop/locale/bootstrap-table-es-SP.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_mtncliente/mtncliente.js"/>"></script>
         <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/global.js"/>"></script>
         <link href="<c:url value="/recursos/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
         <link href="<c:url value="/recursos/bootstrap/css/bootstrap-theme.css"/>" rel="stylesheet">
+        <link href="<c:url value="/recursos/bootstrap-table-develop/css/bootstrap-table.css"/>" rel="stylesheet">
         <title>Mantenimiento de Clientes</title>
     </head>
     <body>
@@ -119,7 +121,7 @@
                 </fieldset>
             </f:form>                   
             <div class="row-fluid">
-                <table id="tabla" class="table">
+                <table id="tabla" class="table table-hover">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -146,6 +148,11 @@
                             </c:if>
                         </c:forEach>
                     </tbody>
+                </table>
+            </div>
+            <div class="row-fluid">
+                <table id="table" class="table table-hover">
+                
                 </table>
             </div>
             <div class="row-fluid">

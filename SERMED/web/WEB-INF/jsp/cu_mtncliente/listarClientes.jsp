@@ -21,7 +21,7 @@
     </head>
     <body>
         <input id="context" type="hidden" value="${pageContext.request.contextPath}"></input>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row-fluid">
                 <div class="navbar navbar-default">
                     <div class="container-fluid">
@@ -54,14 +54,17 @@
                 </fieldset>
             </f:form>
             <div class="row-fluid">
+                <div class="span12">&nbsp;</div>
+            </div>
+            <div class="row-fluid">
                 <div class="col-md-12">
-                    <center><a href="<c:url value="/MtnCliente/cargar.html"/>" class="btn btn-primary center-block" role="button">Crear un Nuevo Cliente</a></center>
+                    <center><a href="<c:url value="/MtnCliente/cargar.html"/>" class="btn btn-primary" role="button">Crear un Nuevo Cliente</a></center>
                 </div>
             </div>
             <div class="row-fluid">
                 <fildset>
                     <legend>Lista de Clientes</legend>
-                    <table id="tabla" class="table table-bordered">
+                    <table id="tabla" class="table table-hover">
                         <thead>
                             <tr>
                                 <th>#</th>
