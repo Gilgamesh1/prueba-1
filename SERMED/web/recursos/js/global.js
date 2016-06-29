@@ -57,3 +57,72 @@ function valEmail(texto) {
         return false;
     }
 }
+
+function isEmpty(id) {
+    var valor = id.val();
+    id.parent().removeClass("has-success has-error");
+    id.next().removeClass("glyphicon-ok glyphicon-remove");
+    if (valor == null || valor.length == 0 || /^\s+$/.test(valor)) {
+        id.parent().addClass("has-error");
+        id.next().addClass("glyphicon-remove");
+        id.next().next().text("No Puede estar vacio");
+        return true;
+    } else {
+        id.parent().addClass("has-success");
+        id.next().addClass("glyphicon-ok");
+        id.next().next().text("");
+        return false;
+    }
+}
+
+function isSelected(id) {
+    var indice = id.prop('selectedIndex');
+    id.parent().removeClass("has-success has-error");
+    id.next("span.glyphicon").removeClass("glyphicon-ok glyphicon-remove");
+    if (indice == null || indice == 0) {
+        id.parent().addClass("has-error");
+        id.next().addClass("glyphicon-remove");
+        id.next().next().text("Seleccione un valor un Tipo de Documento");
+        return true;
+    } else {
+        id.parent().addClass("has-success");
+        id.next().addClass("glyphicon-ok");
+        id.next().next().text("");
+        return false;
+    }
+}
+
+function isEmail(id) {
+    var valor = id.val();
+    id.parent().removeClass("has-success has-error");
+    id.next("span.glyphicon").removeClass("glyphicon-ok glyphicon-remove");
+    if (!(/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(valor))) {
+        id.parent().addClass("has-error");
+        id.next().addClass("glyphicon-remove");
+        id.next().next().text("No Puede estar vacio");
+        return true;
+    } else {
+        id.parent().addClass("has-success");
+        id.next().addClass("glyphicon-ok");
+        id.next().next().text("");
+        return false;
+    }
+}
+function isNumero(id) {
+    var valor = id.val();
+    id.parent().removeClass("has-success has-error");
+    id.next("span.glyphicon").removeClass("glyphicon-ok glyphicon-remove");
+    if (valor == null || valor.length == 0 || /^\s+$/.test(valor)||isNaN(valor)) {
+        id.parent().addClass("has-error");
+        id.next().addClass("glyphicon-remove");
+        id.next().next().text("Debe de ingresar un numero");
+        return true;
+    } else {
+        id.parent().addClass("has-success");
+        id.next().addClass("glyphicon-ok");
+        id.next().next().text("");
+        return false;
+    }
+}
+
+

@@ -1,247 +1,248 @@
 $(document).ready(function () {
+    $("#alerta").hide();
     var $table = $('#table');
     $(function () {
-        var data = [{'id': 0, 'name': 'Item 0', 'price': '$1'}
-            , {'id': 1, 'name': 'Item 1', 'price': '$2'}, {'id': 2, 'name': 'Item 2', 'price': '3'}
-            , {'id': 3, 'name': 'Item 3', 'price': '$4'}, {'id': 4, 'name': 'Item 4', 'price': '5'}
-            , {'id': 5, 'name': 'Item 5', 'price': '$6'}, {'id': 6, 'name': 'Item 6', 'price': '7'} 
-            , {'id': 7, 'name': 'Item 7', 'price': '$8'}, {'id': 8, 'name': 'Item 8', 'price': '9'}
-            , {'id': 9, 'name': 'Item 9', 'price': '$10'}, {'id': 10, 'name': 'Item 10', 'price': '$11'}
-            , {'id': 11, 'name': 'Item 11', 'price': '$12'}, {'id': 12, 'name': 'Item 12', 'price': 'po'}
-            , {'id': 13, 'name': 'Item 13', 'price': '$14'}, {'id': 14, 'name': 'Item 14', 'price': ''}
-            , {'id': 15, 'name': 'Item 15', 'price': '$16'}, {'id': 16, 'name': 'Item 16', 'price': 'j'}
-            , {'id': 17, 'name': 'Item 17', 'price': '$18'}, {'id': 18, 'name': 'Item 18', 'price': '$19'}
-            , {'id': 19, 'name': 'Item 19', 'price': '$20'}, {'id': 20, 'name': 'Item 20', 'price': '$21'}
-            , {'id': 21, 'name': 'Item 21', 'price': '$22'}, {'id': 22, 'name': 'Item 22', 'price': '$23'}
-            , {'id': 23, 'name': 'Item 23', 'price': '$24'}, {'id': 24, 'name': 'Item 24', 'price': '$25'}
-            , {'id': 25, 'name': 'Item 25', 'price': '$26'}, {'id': 26, 'name': 'Item 26', 'price': '$27'}
-            , {'id': 27, 'name': 'Item 27', 'price': '$28'}, {'id': 28, 'name': 'Item 28', 'price': '$29'}
-            , {'id': 29, 'name': 'Item 29', 'price': '$30'}, {'id': 30, 'name': 'Item 30', 'price': '$31'}
-            , {'id': 31, 'name': 'Item 31', 'price': '$32'}, {'id': 32, 'name': 'Item 32', 'price': '$33'}
-            , {'id': 33, 'name': 'Item 33', 'price': '$34'}, {'id': 34, 'name': 'Item 34', 'price': '$35'}
-            , {'id': 35, 'name': 'Item 35', 'price': '$36'}, {'id': 36, 'name': 'Item 36', 'price': '$37'}
-            , {'id': 37, 'name': 'Item 37', 'price': '$38'}, {'id': 38, 'name': 'Item 38', 'price': '$39'}
-            , {'id': 39, 'name': 'Item 39', 'price': '$40'}, {'id': 40, 'name': 'Item 40', 'price': '$41'}
-            , {'id': 41, 'name': 'Item 41', 'price': '$42'}, {'id': 42, 'name': 'Item 42', 'price': '$43'}
-            , {'id': 43, 'name': 'Item 43', 'price': '$44'}, {'id': 44, 'name': 'Item 44', 'price': '$45'}
-            , {'id': 45, 'name': 'Item 45', 'price': '$46'}, {'id': 46, 'name': 'Item 46', 'price': '$47'}
-            , {'id': 47, 'name': 'Item 47', 'price': '$48'}, {'id': 48, 'name': 'Item 48', 'price': '$49'}
-            , {'id': 49, 'name': 'Item 49', 'price': '$50'}, {'id': 50, 'name': 'Item 50', 'price': '$51'}
-            , {'id': 51, 'name': 'Item 51', 'price': '$52'}, {'id': 52, 'name': 'Item 52', 'price': '$53'}
-            , {'id': 53, 'name': 'Item 53', 'price': '$54'}, {'id': 54, 'name': 'Item 54', 'price': '$55'}
-            , {'id': 55, 'name': 'Item 55', 'price': '$56'}, {'id': 56, 'name': 'Item 56', 'price': '$57'}
-            , {'id': 57, 'name': 'Item 57', 'price': '$58'}, {'id': 58, 'name': 'Item 58', 'price': '$59'}
-            , {'id': 59, 'name': 'Item 59', 'price': '$60'}, {'id': 60, 'name': 'Item 60', 'price': '$61'}
-            , {'id': 61, 'name': 'Item 61', 'price': '$62'}, {'id': 62, 'name': 'Item 62', 'price': '$63'}
-            , {'id': 63, 'name': 'Item 63', 'price': '$64'}, {'id': 64, 'name': 'Item 64', 'price': '$65'}
-            , {'id': 65, 'name': 'Item 65', 'price': '$66'}, {'id': 66, 'name': 'Item 66', 'price': '$67'}
-            , {'id': 67, 'name': 'Item 67', 'price': '$68'}, {'id': 68, 'name': 'Item 68', 'price': '$69'}
-            , {'id': 69, 'name': 'Item 69', 'price': '$70'}, {'id': 70, 'name': 'Item 70', 'price': '$71'}
-            , {'id': 71, 'name': 'Item 71', 'price': '$72'}, {'id': 72, 'name': 'Item 72', 'price': '$73'}
-            , {'id': 73, 'name': 'Item 73', 'price': '$74'}, {'id': 74, 'name': 'Item 74', 'price': '$75'}
-            , {'id': 75, 'name': 'Item 75', 'price': '$76'}, {'id': 76, 'name': 'Item 76', 'price': '$77'}
-            , {'id': 77, 'name': 'Item 77', 'price': '$78'}, {'id': 78, 'name': 'Item 78', 'price': '$79'}
-            , {'id': 79, 'name': 'Item 79', 'price': '$80'}, {'id': 80, 'name': 'Item 80', 'price': '$81'}
-            , {'id': 81, 'name': 'Item 81', 'price': '$82'}, {'id': 82, 'name': 'Item 82', 'price': '$83'}
-            , {'id': 83, 'name': 'Item 83', 'price': '$84'}, {'id': 84, 'name': 'Item 84', 'price': '$85'}
-            , {'id': 85, 'name': 'Item 85', 'price': '$86'}, {'id': 86, 'name': 'Item 86', 'price': '$87'}
-            , {'id': 87, 'name': 'Item 87', 'price': '$88'}, {'id': 88, 'name': 'Item 88', 'price': '$89'}
-            , {'id': 89, 'name': 'Item 89', 'price': '$90'}, {'id': 90, 'name': 'Item 90', 'price': '$91'}
-            , {'id': 91, 'name': 'Item 91', 'price': '$92'}, {'id': 92, 'name': 'Item 92', 'price': '$93'}
-            , {'id': 93, 'name': 'Item 93', 'price': '$94'}, {'id': 94, 'name': 'Item 94', 'price': '$95'}
-            , {'id': 95, 'name': 'Item 95', 'price': '$96'}, {'id': 96, 'name': 'Item 96', 'price': '$97'}
-            , {'id': 97, 'name': 'Item 97', 'price': '$98'}, {'id': 98, 'name': 'Item 98', 'price': '$99'}
-            , {'id': 99, 'name': 'Item 99', 'price': '$100'}, {'id': 100, 'name': 'Item 100', 'price': '$101'}
-            , {'id': 101, 'name': 'Item 101', 'price': '$102'}, {'id': 102, 'name': 'Item 102', 'price': '$103'}
-            , {'id': 103, 'name': 'Item 103', 'price': '$104'}, {'id': 104, 'name': 'Item 104', 'price': '$105'}
-            , {'id': 105, 'name': 'Item 105', 'price': '$106'}, {'id': 106, 'name': 'Item 106', 'price': '$107'}
-            , {'id': 107, 'name': 'Item 107', 'price': '$108'}, {'id': 108, 'name': 'Item 108', 'price': '$109'}
-            , {'id': 109, 'name': 'Item 109', 'price': '$110'}, {'id': 110, 'name': 'Item 110', 'price': '$111'}
-            , {'id': 111, 'name': 'Item 111', 'price': '$112'}, {'id': 112, 'name': 'Item 112', 'price': '$113'}
-            , {'id': 113, 'name': 'Item 113', 'price': '$114'}, {'id': 114, 'name': 'Item 114', 'price': '$115'}
-            , {'id': 115, 'name': 'Item 115', 'price': '$116'}, {'id': 116, 'name': 'Item 116', 'price': '$117'}
-            , {'id': 117, 'name': 'Item 117', 'price': '$118'}, {'id': 118, 'name': 'Item 118', 'price': '$119'}
-            , {'id': 119, 'name': 'Item 119', 'price': '$120'}, {'id': 120, 'name': 'Item 120', 'price': '$121'}
-            , {'id': 121, 'name': 'Item 121', 'price': '$122'}, {'id': 122, 'name': 'Item 122', 'price': '$123'}
-            , {'id': 123, 'name': 'Item 123', 'price': '$124'}, {'id': 124, 'name': 'Item 124', 'price': '$125'}
-            , {'id': 125, 'name': 'Item 125', 'price': '$126'}, {'id': 126, 'name': 'Item 126', 'price': '$127'}
-            , {'id': 127, 'name': 'Item 127', 'price': '$128'}, {'id': 128, 'name': 'Item 128', 'price': '$129'}
-            , {'id': 129, 'name': 'Item 129', 'price': '$130'}, {'id': 130, 'name': 'Item 130', 'price': '$131'}
-            , {'id': 131, 'name': 'Item 131', 'price': '$132'}, {'id': 132, 'name': 'Item 132', 'price': '$133'}
-            , {'id': 133, 'name': 'Item 133', 'price': '$134'}, {'id': 134, 'name': 'Item 134', 'price': '$135'}
-            , {'id': 135, 'name': 'Item 135', 'price': '$136'}, {'id': 136, 'name': 'Item 136', 'price': '$137'}
-            , {'id': 137, 'name': 'Item 137', 'price': '$138'}, {'id': 138, 'name': 'Item 138', 'price': '$139'}
-            , {'id': 139, 'name': 'Item 139', 'price': '$140'}, {'id': 140, 'name': 'Item 140', 'price': '$141'}
-            , {'id': 141, 'name': 'Item 141', 'price': '$142'}, {'id': 142, 'name': 'Item 142', 'price': '$143'}
-            , {'id': 143, 'name': 'Item 143', 'price': '$144'}, {'id': 144, 'name': 'Item 144', 'price': '$145'}
-            , {'id': 145, 'name': 'Item 145', 'price': '$146'}, {'id': 146, 'name': 'Item 146', 'price': '$147'}
-            , {'id': 147, 'name': 'Item 147', 'price': '$148'}, {'id': 148, 'name': 'Item 148', 'price': '$149'}
-            , {'id': 149, 'name': 'Item 149', 'price': '$150'}, {'id': 150, 'name': 'Item 150', 'price': '$151'}
-            , {'id': 151, 'name': 'Item 151', 'price': '$152'}, {'id': 152, 'name': 'Item 152', 'price': '$153'}
-            , {'id': 153, 'name': 'Item 153', 'price': '$154'}, {'id': 154, 'name': 'Item 154', 'price': '$155'}
-            , {'id': 155, 'name': 'Item 155', 'price': '$156'}, {'id': 156, 'name': 'Item 156', 'price': '$157'}
-            , {'id': 157, 'name': 'Item 157', 'price': '$158'}, {'id': 158, 'name': 'Item 158', 'price': '$159'}
-            , {'id': 159, 'name': 'Item 159', 'price': '$160'}, {'id': 160, 'name': 'Item 160', 'price': '$161'}
-            , {'id': 161, 'name': 'Item 161', 'price': '$162'}, {'id': 162, 'name': 'Item 162', 'price': '$163'}
-            , {'id': 163, 'name': 'Item 163', 'price': '$164'}, {'id': 164, 'name': 'Item 164', 'price': '$165'}
-            , {'id': 165, 'name': 'Item 165', 'price': '$166'}, {'id': 166, 'name': 'Item 166', 'price': '$167'}
-            , {'id': 167, 'name': 'Item 167', 'price': '$168'}, {'id': 168, 'name': 'Item 168', 'price': '$169'}
-            , {'id': 169, 'name': 'Item 169', 'price': '$170'}, {'id': 170, 'name': 'Item 170', 'price': '$171'}
-            , {'id': 171, 'name': 'Item 171', 'price': '$172'}, {'id': 172, 'name': 'Item 172', 'price': '$173'}
-            , {'id': 173, 'name': 'Item 173', 'price': '$174'}, {'id': 174, 'name': 'Item 174', 'price': '$175'}
-            , {'id': 175, 'name': 'Item 175', 'price': '$176'}, {'id': 176, 'name': 'Item 176', 'price': '$177'}
-            , {'id': 177, 'name': 'Item 177', 'price': '$178'}, {'id': 178, 'name': 'Item 178', 'price': '$179'}
-            , {'id': 179, 'name': 'Item 179', 'price': '$180'}, {'id': 180, 'name': 'Item 180', 'price': '$181'}
-            , {'id': 181, 'name': 'Item 181', 'price': '$182'}, {'id': 182, 'name': 'Item 182', 'price': '$183'}
-            , {'id': 183, 'name': 'Item 183', 'price': '$184'}, {'id': 184, 'name': 'Item 184', 'price': '$185'}
-            , {'id': 185, 'name': 'Item 185', 'price': '$186'}, {'id': 186, 'name': 'Item 186', 'price': '$187'}
-            , {'id': 187, 'name': 'Item 187', 'price': '$188'}, {'id': 188, 'name': 'Item 188', 'price': '$189'}
-            , {'id': 189, 'name': 'Item 189', 'price': '$190'}, {'id': 190, 'name': 'Item 190', 'price': '$191'}
-            , {'id': 191, 'name': 'Item 191', 'price': '$192'}, {'id': 192, 'name': 'Item 192', 'price': '$193'}
-            , {'id': 193, 'name': 'Item 193', 'price': '$194'}, {'id': 194, 'name': 'Item 194', 'price': '$195'}
-            , {'id': 195, 'name': 'Item 195', 'price': '$196'}, {'id': 196, 'name': 'Item 196', 'price': '$197'}
-            , {'id': 197, 'name': 'Item 197', 'price': '$198'}, {'id': 198, 'name': 'Item 198', 'price': '$199'}
-            , {'id': 199, 'name': 'Item 199', 'price': '$200'}];
+        var data = [{'nroTabla': 0, 'direccion': 'Item 0', 'ciudad': '$1', 'pos': 0}
+            , {'nroTabla': 1, 'direccion': 'Item 1', 'ciudad': '$2'}, {'nroTabla': 2, 'direccion': 'Item 2', 'ciudad': '$3'}
+            , {'nroTabla': 3, 'direccion': 'Item 3', 'ciudad': '$4'}, {'nroTabla': 4, 'direccion': 'Item 4', 'ciudad': '$5'}
+            , {'nroTabla': 5, 'direccion': 'Item 5', 'ciudad': '$6'}, {'nroTabla': 6, 'direccion': 'Item 6', 'ciudad': '$7'}
+            , {'nroTabla': 7, 'direccion': 'Item 7', 'ciudad': '$8'}, {'nroTabla': 8, 'direccion': 'Item 8', 'ciudad': '$9'}
+            , {'nroTabla': 9, 'direccion': 'Item 9', 'ciudad': '$10'}, {'nroTabla': 10, 'direccion': 'Item 10', 'ciudad': '$11'}
+            , {'nroTabla': 11, 'direccion': 'Item 11', 'ciudad': '$12'}, {'nroTabla': 12, 'direccion': 'Item 12', 'ciudad': '$13'}
+            , {'nroTabla': 13, 'direccion': 'Item 13', 'ciudad': '$14'}, {'nroTabla': 14, 'direccion': 'Item 14', 'ciudad': '$15'}
+            , {'nroTabla': 15, 'direccion': 'Item 15', 'ciudad': '$16'}, {'nroTabla': 16, 'direccion': 'Item 16', 'ciudad': '$17'}
+            , {'nroTabla': 17, 'direccion': 'Item 17', 'ciudad': '$18'}, {'nroTabla': 18, 'direccion': 'Item 18', 'ciudad': '$19'}
+            , {'nroTabla': 19, 'direccion': 'Item 19', 'ciudad': '$20'}, {'nroTabla': 20, 'direccion': 'Item 20', 'ciudad': '$21'}
+            , {'nroTabla': 21, 'direccion': 'Item 21', 'ciudad': '$22'}, {'nroTabla': 22, 'direccion': 'Item 22', 'ciudad': '$23'}
+            , {'nroTabla': 23, 'direccion': 'Item 23', 'ciudad': '$24'}, {'nroTabla': 24, 'direccion': 'Item 24', 'ciudad': '$25'}
+            , {'nroTabla': 25, 'direccion': 'Item 25', 'ciudad': '$26'}, {'nroTabla': 26, 'direccion': 'Item 26', 'ciudad': '$27'}
+            , {'nroTabla': 27, 'direccion': 'Item 27', 'ciudad': '$28'}, {'nroTabla': 28, 'direccion': 'Item 28', 'ciudad': '$29'}
+            , {'nroTabla': 29, 'direccion': 'Item 29', 'ciudad': '$30'}, {'nroTabla': 30, 'direccion': 'Item 30', 'ciudad': '$31'}
+            , {'nroTabla': 31, 'direccion': 'Item 31', 'ciudad': '$32'}, {'nroTabla': 32, 'direccion': 'Item 32', 'ciudad': '$33'}
+            , {'nroTabla': 33, 'direccion': 'Item 33', 'ciudad': '$34'}, {'nroTabla': 34, 'direccion': 'Item 34', 'ciudad': '$35'}
+            , {'nroTabla': 35, 'direccion': 'Item 35', 'ciudad': '$36'}, {'nroTabla': 36, 'direccion': 'Item 36', 'ciudad': '$37'}
+            , {'nroTabla': 37, 'direccion': 'Item 37', 'ciudad': '$38'}, {'nroTabla': 38, 'direccion': 'Item 38', 'ciudad': '$39'}
+            , {'nroTabla': 39, 'direccion': 'Item 39', 'ciudad': '$40'}, {'nroTabla': 40, 'direccion': 'Item 40', 'ciudad': '$41'}
+            , {'nroTabla': 41, 'direccion': 'Item 41', 'ciudad': '$42'}, {'nroTabla': 42, 'direccion': 'Item 42', 'ciudad': '$43'}
+            , {'nroTabla': 43, 'direccion': 'Item 43', 'ciudad': '$44'}, {'nroTabla': 44, 'direccion': 'Item 44', 'ciudad': '$45'}
+            , {'nroTabla': 45, 'direccion': 'Item 45', 'ciudad': '$46'}, {'nroTabla': 46, 'direccion': 'Item 46', 'ciudad': '$47'}
+            , {'nroTabla': 47, 'direccion': 'Item 47', 'ciudad': '$48'}, {'nroTabla': 48, 'direccion': 'Item 48', 'ciudad': '$49'}
+            , {'nroTabla': 49, 'direccion': 'Item 49', 'ciudad': '$50'}, {'nroTabla': 50, 'direccion': 'Item 50', 'ciudad': '$51'}
+            , {'nroTabla': 51, 'direccion': 'Item 51', 'ciudad': '$52'}, {'nroTabla': 52, 'direccion': 'Item 52', 'ciudad': '$53'}
+            , {'nroTabla': 53, 'direccion': 'Item 53', 'ciudad': '$54'}, {'nroTabla': 54, 'direccion': 'Item 54', 'ciudad': '$55'}
+            , {'nroTabla': 55, 'direccion': 'Item 55', 'ciudad': '$56'}, {'nroTabla': 56, 'direccion': 'Item 56', 'ciudad': '$57'}
+            , {'nroTabla': 57, 'direccion': 'Item 57', 'ciudad': '$58'}, {'nroTabla': 58, 'direccion': 'Item 58', 'ciudad': '$59'}
+            , {'nroTabla': 59, 'direccion': 'Item 59', 'ciudad': '$60'}, {'nroTabla': 60, 'direccion': 'Item 60', 'ciudad': '$61'}
+            , {'nroTabla': 61, 'direccion': 'Item 61', 'ciudad': '$62'}, {'nroTabla': 62, 'direccion': 'Item 62', 'ciudad': '$63'}
+            , {'nroTabla': 63, 'direccion': 'Item 63', 'ciudad': '$64'}, {'nroTabla': 64, 'direccion': 'Item 64', 'ciudad': '$65'}
+            , {'nroTabla': 65, 'direccion': 'Item 65', 'ciudad': '$66'}, {'nroTabla': 66, 'direccion': 'Item 66', 'ciudad': '$67'}
+            , {'nroTabla': 67, 'direccion': 'Item 67', 'ciudad': '$68'}, {'nroTabla': 68, 'direccion': 'Item 68', 'ciudad': '$69'}
+            , {'nroTabla': 69, 'direccion': 'Item 69', 'ciudad': '$70'}, {'nroTabla': 70, 'direccion': 'Item 70', 'ciudad': '$71'}
+            , {'nroTabla': 71, 'direccion': 'Item 71', 'ciudad': '$72'}, {'nroTabla': 72, 'direccion': 'Item 72', 'ciudad': '$73'}
+            , {'nroTabla': 73, 'direccion': 'Item 73', 'ciudad': '$74'}, {'nroTabla': 74, 'direccion': 'Item 74', 'ciudad': '$75'}
+            , {'nroTabla': 75, 'direccion': 'Item 75', 'ciudad': '$76'}, {'nroTabla': 76, 'direccion': 'Item 76', 'ciudad': '$77'}
+            , {'nroTabla': 77, 'direccion': 'Item 77', 'ciudad': '$78'}, {'nroTabla': 78, 'direccion': 'Item 78', 'ciudad': '$79'}
+            , {'nroTabla': 79, 'direccion': 'Item 79', 'ciudad': '$80'}, {'nroTabla': 80, 'direccion': 'Item 80', 'ciudad': '$81'}
+            , {'nroTabla': 81, 'direccion': 'Item 81', 'ciudad': '$82'}, {'nroTabla': 82, 'direccion': 'Item 82', 'ciudad': '$83'}
+            , {'nroTabla': 83, 'direccion': 'Item 83', 'ciudad': '$84'}, {'nroTabla': 84, 'direccion': 'Item 84', 'ciudad': '$85'}
+            , {'nroTabla': 85, 'direccion': 'Item 85', 'ciudad': '$86'}, {'nroTabla': 86, 'direccion': 'Item 86', 'ciudad': '$87'}
+            , {'nroTabla': 87, 'direccion': 'Item 87', 'ciudad': '$88'}, {'nroTabla': 88, 'direccion': 'Item 88', 'ciudad': '$89'}
+            , {'nroTabla': 89, 'direccion': 'Item 89', 'ciudad': '$90'}, {'nroTabla': 90, 'direccion': 'Item 90', 'ciudad': '$91'}
+            , {'nroTabla': 91, 'direccion': 'Item 91', 'ciudad': '$92'}, {'nroTabla': 92, 'direccion': 'Item 92', 'ciudad': '$93'}
+            , {'nroTabla': 93, 'direccion': 'Item 93', 'ciudad': '$94'}, {'nroTabla': 94, 'direccion': 'Item 94', 'ciudad': '$95'}
+            , {'nroTabla': 95, 'direccion': 'Item 95', 'ciudad': '$96'}, {'nroTabla': 96, 'direccion': 'Item 96', 'ciudad': '$97'}
+            , {'nroTabla': 97, 'direccion': 'Item 97', 'ciudad': '$98'}, {'nroTabla': 98, 'direccion': 'Item 98', 'ciudad': '$99'}
+            , {'nroTabla': 99, 'direccion': 'Item 99', 'ciudad': '$100'}, {'nroTabla': 100, 'direccion': 'Item 100', 'ciudad': '$101'}
+            , {'nroTabla': 101, 'direccion': 'Item 101', 'ciudad': '$102'}, {'nroTabla': 102, 'direccion': 'Item 102', 'ciudad': '$103'}
+            , {'nroTabla': 103, 'direccion': 'Item 103', 'ciudad': '$104'}, {'nroTabla': 104, 'direccion': 'Item 104', 'ciudad': '$105'}
+            , {'nroTabla': 105, 'direccion': 'Item 105', 'ciudad': '$106'}, {'nroTabla': 106, 'direccion': 'Item 106', 'ciudad': '$107'}
+            , {'nroTabla': 107, 'direccion': 'Item 107', 'ciudad': '$108'}, {'nroTabla': 108, 'direccion': 'Item 108', 'ciudad': '$109'}
+            , {'nroTabla': 109, 'direccion': 'Item 109', 'ciudad': '$110'}, {'nroTabla': 110, 'direccion': 'Item 110', 'ciudad': '$111'}
+            , {'nroTabla': 111, 'direccion': 'Item 111', 'ciudad': '$112'}, {'nroTabla': 112, 'direccion': 'Item 112', 'ciudad': '$113'}
+            , {'nroTabla': 113, 'direccion': 'Item 113', 'ciudad': '$114'}, {'nroTabla': 114, 'direccion': 'Item 114', 'ciudad': '$115'}
+            , {'nroTabla': 115, 'direccion': 'Item 115', 'ciudad': '$116'}, {'nroTabla': 116, 'direccion': 'Item 116', 'ciudad': '$117'}
+            , {'nroTabla': 117, 'direccion': 'Item 117', 'ciudad': '$118'}, {'nroTabla': 118, 'direccion': 'Item 118', 'ciudad': '$119'}
+            , {'nroTabla': 119, 'direccion': 'Item 119', 'ciudad': '$120'}, {'nroTabla': 120, 'direccion': 'Item 120', 'ciudad': '$121'}
+            , {'nroTabla': 121, 'direccion': 'Item 121', 'ciudad': '$122'}, {'nroTabla': 122, 'direccion': 'Item 122', 'ciudad': '$123'}
+            , {'nroTabla': 123, 'direccion': 'Item 123', 'ciudad': '$124'}, {'nroTabla': 124, 'direccion': 'Item 124', 'ciudad': '$125'}
+            , {'nroTabla': 125, 'direccion': 'Item 125', 'ciudad': '$126'}, {'nroTabla': 126, 'direccion': 'Item 126', 'ciudad': '$127'}
+            , {'nroTabla': 127, 'direccion': 'Item 127', 'ciudad': '$128'}, {'nroTabla': 128, 'direccion': 'Item 128', 'ciudad': '$129'}
+            , {'nroTabla': 129, 'direccion': 'Item 129', 'ciudad': '$130'}, {'nroTabla': 130, 'direccion': 'Item 130', 'ciudad': '$131'}
+            , {'nroTabla': 131, 'direccion': 'Item 131', 'ciudad': '$132'}, {'nroTabla': 132, 'direccion': 'Item 132', 'ciudad': '$133'}
+            , {'nroTabla': 133, 'direccion': 'Item 133', 'ciudad': '$134'}, {'nroTabla': 134, 'direccion': 'Item 134', 'ciudad': '$135'}
+            , {'nroTabla': 135, 'direccion': 'Item 135', 'ciudad': '$136'}, {'nroTabla': 136, 'direccion': 'Item 136', 'ciudad': '$137'}
+            , {'nroTabla': 137, 'direccion': 'Item 137', 'ciudad': '$138'}, {'nroTabla': 138, 'direccion': 'Item 138', 'ciudad': '$139'}
+            , {'nroTabla': 139, 'direccion': 'Item 139', 'ciudad': '$140'}, {'nroTabla': 140, 'direccion': 'Item 140', 'ciudad': '$141'}
+            , {'nroTabla': 141, 'direccion': 'Item 141', 'ciudad': '$142'}, {'nroTabla': 142, 'direccion': 'Item 142', 'ciudad': '$143'}
+            , {'nroTabla': 143, 'direccion': 'Item 143', 'ciudad': '$144'}, {'nroTabla': 144, 'direccion': 'Item 144', 'ciudad': '$145'}
+            , {'nroTabla': 145, 'direccion': 'Item 145', 'ciudad': '$146'}, {'nroTabla': 146, 'direccion': 'Item 146', 'ciudad': '$147'}
+            , {'nroTabla': 147, 'direccion': 'Item 147', 'ciudad': '$148'}, {'nroTabla': 148, 'direccion': 'Item 148', 'ciudad': '$149'}
+            , {'nroTabla': 149, 'direccion': 'Item 149', 'ciudad': '$150'}, {'nroTabla': 150, 'direccion': 'Item 150', 'ciudad': '$151'}
+            , {'nroTabla': 151, 'direccion': 'Item 151', 'ciudad': '$152'}, {'nroTabla': 152, 'direccion': 'Item 152', 'ciudad': '$153'}
+            , {'nroTabla': 153, 'direccion': 'Item 153', 'ciudad': '$154'}, {'nroTabla': 154, 'direccion': 'Item 154', 'ciudad': '$155'}
+            , {'nroTabla': 155, 'direccion': 'Item 155', 'ciudad': '$156'}, {'nroTabla': 156, 'direccion': 'Item 156', 'ciudad': '$157'}
+            , {'nroTabla': 157, 'direccion': 'Item 157', 'ciudad': '$158'}, {'nroTabla': 158, 'direccion': 'Item 158', 'ciudad': '$159'}
+            , {'nroTabla': 159, 'direccion': 'Item 159', 'ciudad': '$160'}, {'nroTabla': 160, 'direccion': 'Item 160', 'ciudad': '$161'}
+            , {'nroTabla': 161, 'direccion': 'Item 161', 'ciudad': '$162'}, {'nroTabla': 162, 'direccion': 'Item 162', 'ciudad': '$163'}
+            , {'nroTabla': 163, 'direccion': 'Item 163', 'ciudad': '$164'}, {'nroTabla': 164, 'direccion': 'Item 164', 'ciudad': '$165'}
+            , {'nroTabla': 165, 'direccion': 'Item 165', 'ciudad': '$166'}, {'nroTabla': 166, 'direccion': 'Item 166', 'ciudad': '$167'}
+            , {'nroTabla': 167, 'direccion': 'Item 167', 'ciudad': '$168'}, {'nroTabla': 168, 'direccion': 'Item 168', 'ciudad': '$169'}
+            , {'nroTabla': 169, 'direccion': 'Item 169', 'ciudad': '$170'}, {'nroTabla': 170, 'direccion': 'Item 170', 'ciudad': '$171'}
+            , {'nroTabla': 171, 'direccion': 'Item 171', 'ciudad': '$172'}, {'nroTabla': 172, 'direccion': 'Item 172', 'ciudad': '$173'}
+            , {'nroTabla': 173, 'direccion': 'Item 173', 'ciudad': '$174'}, {'nroTabla': 174, 'direccion': 'Item 174', 'ciudad': '$175'}
+            , {'nroTabla': 175, 'direccion': 'Item 175', 'ciudad': '$176'}, {'nroTabla': 176, 'direccion': 'Item 176', 'ciudad': '$177'}
+            , {'nroTabla': 177, 'direccion': 'Item 177', 'ciudad': '$178'}, {'nroTabla': 178, 'direccion': 'Item 178', 'ciudad': '$179'}
+            , {'nroTabla': 179, 'direccion': 'Item 179', 'ciudad': '$180'}, {'nroTabla': 180, 'direccion': 'Item 180', 'ciudad': '$181'}
+            , {'nroTabla': 181, 'direccion': 'Item 181', 'ciudad': '$182'}, {'nroTabla': 182, 'direccion': 'Item 182', 'ciudad': '$183'}
+            , {'nroTabla': 183, 'direccion': 'Item 183', 'ciudad': '$184'}, {'nroTabla': 184, 'direccion': 'Item 184', 'ciudad': '$185'}
+            , {'nroTabla': 185, 'direccion': 'Item 185', 'ciudad': '$186'}, {'nroTabla': 186, 'direccion': 'Item 186', 'ciudad': '$187'}
+            , {'nroTabla': 187, 'direccion': 'Item 187', 'ciudad': '$188'}, {'nroTabla': 188, 'direccion': 'Item 188', 'ciudad': '$189'}
+            , {'nroTabla': 189, 'direccion': 'Item 189', 'ciudad': '$190'}, {'nroTabla': 190, 'direccion': 'Item 190', 'ciudad': '$191'}
+            , {'nroTabla': 191, 'direccion': 'Item 191', 'ciudad': '$192'}, {'nroTabla': 192, 'direccion': 'Item 192', 'ciudad': '$193'}
+            , {'nroTabla': 193, 'direccion': 'Item 193', 'ciudad': '$194'}, {'nroTabla': 194, 'direccion': 'Item 194', 'ciudad': '$195'}
+            , {'nroTabla': 195, 'direccion': 'Item 195', 'ciudad': '$196'}, {'nroTabla': 196, 'direccion': 'Item 196', 'ciudad': '$197'}
+            , {'nroTabla': 197, 'direccion': 'Item 197', 'ciudad': '$198'}, {'nroTabla': 198, 'direccion': 'Item 198', 'ciudad': '$199'}
+            , {'nroTabla': 199, 'direccion': 'Item 199', 'ciudad': '$200'}];
         $table.bootstrapTable({
-//            height: getHeight(),
             columns: [
-                [
-                    {
-                        field: 'state',
-                        checkbox: true,
-                        rowspan: 2,
-                        align: 'center',
-                        valign: 'middle'
-                    }, {
-                        title: 'Item ID',
-                        field: 'id',
-                        rowspan: 2,
-                        align: 'center',
-                        valign: 'middle',
-                        sortable: true,
-                        footerFormatter: totalTextFormatter
-                    }, {
-                        title: 'Item Details',
-                        colspan: 3,
-                        align: 'center',
-                        valign: 'middle'
-                    }
-                ], [
-                    {
-                        field: 'name',
-                        title: 'Nombre',
-                        align: 'center',
-                        sortable:true,
-                        editable:true,
-                        footerFormatter: totalNameFormatter
-                    },{
-                        field:'price',
-                        title: 'Item Price',
-                        sortable:true,
-                        align: 'center',
-                        editable: {
-                            type: 'text',
-                            title: 'Item Price',
-                            validate: function (value) {
-                                value = $.trim(value);
-                                if (!value) {
-                                    return 'This field is required';
-                                }
-                                if (!/^\$/.test(value)) {
-                                    return 'This field needs to start width $.'
-                                }
-                                var data = $table.bootstrapTable('getData'),
-                                    index = $(this).parents('tr').data('index');
-                                console.log(data[index]);
-                                return '';
-                            }
-                        },
-                        footerFormatter: totalPriceFormatter
-                    },{
-                        field:'operate',
-                        title: 'Item Operate',
-                        align: 'center',
-                        events: operateEvents,
-                        formatter: operateFormatter
-                    }
-                ]
+                {
+                    field: 'nroTabla',
+                    align: 'center'
+                }, {
+                    field: 'direccion',
+                    align: 'center'
+                }, {
+                    field: 'ciudad',
+                    align: 'center'
+                }, {
+                    field: 'operate',
+                    align: 'center',
+                    events: operateEvents,
+                    formatter: operateFormatter
+                }
             ],
-            data: data,
+//            data: data,
             pagination: true
         });
-//        $table.bootstrapTable({
+        var table1 = $("#table1");
+//        table1.bootstrapTable({
+//            height: getHeight(),
+//            columns: [
+//                [
+//                    {
+//                        field: 'state',
+//                        checkbox: true,
+//                        rowspan: 2,
+//                        align: 'center',
+//                        valign: 'middle'
+//                    }, {
+//                        title: 'Item ID',
+//                        field: 'id',
+//                        rowspan: 2,
+//                        align: 'center',
+//                        valign: 'middle',
+//                        sortable: true,
+//                        footerFormatter: totalTextFormatter
+//                    }, {
+//                        title: 'Item Details',
+//                        colspan: 3,
+//                        align: 'center',
+//                        valign: 'middle'
+//                    }
+//                ], [
+//                    {
+//                        field: 'name',
+//                        title: 'Nombre',
+//                        align: 'center',
+//                        sortable:true,
+//                        editable:true,
+//                        footerFormatter: totalNameFormatter
+//                    },{
+//                        field:'price',
+//                        title: 'Item Price',
+//                        sortable:true,
+//                        align: 'center',
+//                        editable: {
+//                            type: 'text',
+//                            title: 'Item Price',
+//                            validate: function (value) {
+//                                value = $.trim(value);
+//                                if (!value) {
+//                                    return 'This field is required';
+//                                }
+//                                if (!/^\$/.test(value)) {
+//                                    return 'This field needs to start width $.'
+//                                }
+//                                var data = $table.bootstrapTable('getData'),
+//                                    index = $(this).parents('tr').data('index');
+//                                console.log(data[index]);
+//                                return '';
+//                            }
+//                        },
+//                        footerFormatter: totalPriceFormatter
+//                    },{
+//                        field:'operate',
+//                        title: 'Item Operate',
+//                        align: 'center',
+//                        events: operateEvents,
+//                        formatter: operateFormatter
+//                    }
+//                ]
+//            ],
 //            data: data,
-//            checkbox:true,
-//            checkboxHeader:true,
-//            checkboxEnabled:true,
-//            pagination:true
+//            pagination: true
+//        });.nroTabla
+
+        $.each(data, function (key, val) {
+            console.log("key :" + key + " val :" + val);
+            $.each(val, function (key, val) {
+                console.log("key :" + key + " val :" + val);
+            });
+        });
+
+
+////////////////////////////////////////////////////////////////////////////////
+//      Validacion
+        //$('#form').validator();
+//        $("#form").bootstrapValidator({
+//            /*framework: 'bootstrap',
+//             icon: {
+//             valid: 'glyphicon glyphicon-ok',
+//             invalid: 'glyphicon glyphicon-remove',
+//             validating: 'glyphicon glyphicon-refresh'
+//             },*/
+//            message: 'This value is not valid',
+//            fields: {
+//                t1: {
+//                    message: 'The username is not valid',
+//                    validators: {
+//                        notEmpty: {
+//                            message: 'Este campo es requerido'
+//                        },
+//                        stringLength: {
+//                            min: 3,
+//                            max: 6
+//                        }
+//                    }
+//                }
+//            }
 //        });
-//        ----------------------------------------------------------------------
-//        Funciona bien
-//var defaultColumns = [{
-//                field: 'id',
-//                title: 'Item ID'
-//            }, {
-//                field: 'name',
-//                title: 'Item Name'
-//            }, {
-//                field: 'price',
-//                title: 'Item Price'
-//            }],
-//            selectsColumns = [{
-//                field: 'state'
-//            }, {
-//                field: 'id',
-//                title: 'Item ID'
-//            }, {
-//                field: 'name',
-//                title: 'Item Name'
-//            }, {
-//                field: 'price',
-//                title: 'Item Price'
-//            }],
-//            columns = [],
-//            tableOptions = {},
-//            columnOptions = {};
-//            
-//            tableOptions= {"cache":true,"showHeader":true,"smartDisplay":true,"trimOnSearch":true,"checkboxHeader":true,
-//                "sortable":true,"silentSort":true},
-//            columnOptions= {"checkbox":true,"checkboxEnabled":true,"visible":true,"switchable":true,"clickToSelect":true,
-//                "searchable":true,"searchFormatter":true,"cardVisible":true},
-//            columns=[];
-//        if (columnOptions.checkbox) {
-//            columns = selectsColumns.slice(0);
-//            columns[0].checkbox = true;
-//        } else if (columnOptions.radio) {
-//            columns = selectsColumns.slice(0);
-//            columns[0].radio = true;
-//        } else {
-//            columns = defaultColumns.slice(0);
-//        }  
-//        columns= [{"radio":true,"checkbox":false,"checkboxEnabled":true,"sortable":false,"visible":true,"switchable":true,
-//                "clickToSelect":true,"searchable":true,"searchFormatter":true,"cardVisible":true,"field":"state"},{"radio":false,"checkbox":false,"checkboxEnabled":true,"sortable":false,"visible":true,"switchable":true,"clickToSelect":true,"searchable":true,"searchFormatter":true,"cardVisible":true,"field":"id","title":"Item ID"},{"radio":false,"checkbox":false,"checkboxEnabled":true,"sortable":false,"visible":true,"switchable":true,"clickToSelect":true,"searchable":true,"searchFormatter":true,"cardVisible":true,"field":"name","title":"Item Name"},{"radio":false,"checkbox":false,"checkboxEnabled":true,"sortable":false,"visible":true,"switchable":true,"clickToSelect":true,"searchable":true,"searchFormatter":true,"cardVisible":true,"field":"price","title":"Item Price"}];
-//        var defaultTableOptions= {"striped":false,"cache":false,"pagination":false,"onlyInfoPagination":false,
-//            "search":false,"searchOnEnterKey":false,"strictSearch":false,"showHeader":false,"showFooter":false,
-//            "showColumns":false,"showPaginationSwitch":false,"showRefresh":false,"showToggle":false,"smartDisplay":false,
-//            "escape":false,"cardView":false,"detailView":false,"trimOnSearch":false,"clickToSelect":false,"singleSelect":false,
-//            "checkboxHeader":false,"sortable":false,"silentSort":false,"maintainSelected":false};
-//        $table.bootstrapTable('destroy').bootstrapTable($.extend({
-//            data: data,
-//            columns: columns
-//        }, defaultTableOptions, tableOptions));
-//    --------------------------------------------------------------------------
+        /*$("#t1").on("keyup",function(){
+         console.log("aprete un boton " +$(this).val()) ;
+         });*/
     });
     function operateFormatter(value, row, index) {
+        console.log("value: " + value + " row: " + JSON.stringify(row) + " index: " + index);//'+row[pos]+''+row[pos]+'
         return [
-            '<a class="like" href="javascript:void(0)" title="Like">',
-            '<i class="glyphicon glyphicon-heart"></i>',
-            '</a>  ',
-            '<a class="remove" href="javascript:void(0)" title="Remove">',
+            '<a class="like" href="javascript:void(0)" onclick="cargarDireccion(' + row.pos + ')" title="Actualizar">',
+            '<i class="glyphicon glyphicon-pencil"></i>',
+            '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+            '<a class="remove" href="javascript:void(0)" onclick="eliminarDireccion(' + row.pos + ')" title="Eliminar">',
             '<i class="glyphicon glyphicon-remove"></i>',
             '</a>'
         ].join('');
     }
-    
+
     window.operateEvents = {
         'click .like': function (e, value, row, index) {
             alert('You click like action, row: ' + JSON.stringify(row));
@@ -254,7 +255,7 @@ $(document).ready(function () {
         }
     };
 
-    
+
     function totalNameFormatter(data) {
         return data.length;
     }
@@ -262,7 +263,7 @@ $(document).ready(function () {
     function totalTextFormatter(data) {
         return 'Total';
     }
-    
+
     function totalPriceFormatter(data) {
         var total = 0;
         $.each(data, function (i, row) {
@@ -270,7 +271,7 @@ $(document).ready(function () {
         });
         return '$' + total;
     }
-    
+
     function getHeight() {
         return $(window).height() - $('h1').outerHeight(true);
     }
@@ -458,16 +459,15 @@ function cargarPaginacion(data) {
 function guardarDireccion() {
     var datos = {direccion: $("#t9").val(), ciudad: $("#t10").val(), pos: $("#t11").val()};
     var url = $("#context").val();
-    if ($("#t11").val() == 0) {
+    if ($("#t11").val() === '0') {
         url += "/MtnCliente/agregarDireccion.html";
     } else {
         url += "/MtnCliente/actualizarDireccion.html";
     }
     console.log(JSON.stringify(datos));
     console.log(url);
-    if ($("#t9").val() == "" || $("#t10").val() == "") {
-        alert("Debe de ingresar la Direcci&oacute;n y la Ubicaci&oacute;n.");
-    } else {
+    var flag9 = isEmpty($("#t9")), flag10 = isEmpty($("#t10"));
+    if (!flag9 && !flag10) {
         $.ajax({
             type: "POST",
             contentType: "application/json",
@@ -477,6 +477,11 @@ function guardarDireccion() {
             timeout: 100000,
             success: function (data) {
                 tablaDireccion(data);
+                /*var tabla = $("#table");
+                 tabla.bootstrapTable('load', data);
+                 $("#t9").val("");
+                 $("#t10").val("");
+                 $("#t11").val(0);*/
             },
             error: function (e) {
                 console.log("ERROR: ", e);
@@ -539,19 +544,34 @@ function eliminarDireccion(pos) {
 }
 
 function tablaDireccion(data) {
-    var filas = "";
+    var newdata = new Array();
+    var pos = 0;
+    console.log("data :" + data);
+    console.log("data stringify :" + JSON.stringify(data));
     for (i = 0; i < data.length; i++) {
-        var val = data[i];
-        if (val['mostrar'] == true) {
-            filas += "<tr><td>" + val['nroTabla'] + "</td><td>" + val['direccion'] + "</td><td>" + val['ciudad'] + "</td>" +
-                    "<td><a href='#' onclick='cargarDireccion(" + val['pos'] + ")' class='btn btn-primary' role='button'>Actualizar</a></td>" +
-                    "<td><a href='#' onclick='eliminarDireccion(" + val['pos'] + ")' class='btn btn-danger' role='button'>Eliminiar</a></td></tr>";
+        console.log(data[i].mostrar);
+        if (data[i].mostrar === true) {
+            newdata[pos] = data[i];
+            pos++;
         }
     }
-    $("#contenido").remove();
-    var tbody = $('<tbody/>', {'id': 'contenido'});
-    $("#tabla").append(tbody);
-    $("#contenido").append(filas);
+    console.log("newdata :" + newdata);
+    console.log("newdata stringify :" + JSON.stringify(newdata));
+    var tabla = $("#table");
+    tabla.bootstrapTable('load', newdata);
+    /*var filas = "";
+     for (i = 0; i < data.length; i++) {
+     var val = data[i];
+     if (val['mostrar'] == true) {
+     filas += "<tr><td>" + val['nroTabla'] + "</td><td>" + val['direccion'] + "</td><td>" + val['ciudad'] + "</td>" +
+     "<td><a href='#' onclick='cargarDireccion(" + val['pos'] + ")' class='btn btn-primary' role='button'>Actualizar</a></td>" +
+     "<td><a href='#' onclick='eliminarDireccion(" + val['pos'] + ")' class='btn btn-danger' role='button'>Eliminiar</a></td></tr>";
+     }
+     }
+     $("#contenido").remove();
+     var tbody = $('<tbody/>', {'id': 'contenido'});
+     $("#tabla").append(tbody);
+     $("#contenido").append(filas);*/
     $("#t9").val("");
     $("#t10").val("");
     $("#t11").val(0);
@@ -564,70 +584,38 @@ function guardarCliente() {
     } else {
         url += "/MtnCliente/modificarCliente.html";
     }
-    var error = validacion();
-    if (error == "") {
+    if( validacion()){
+        $("#alerta").show();
+    }else{
+        $("#alerta").hide();
+        var form = $("#form");
+        form.attr("action", url);
+        form.submit();
+    }
+}
+
+function validacion() {
+    var flag = false;
+    if (isEmpty($("#t1")))
+        flag = true;
+    if (isSelected($("#t3")))
+        flag = true;
+    if (isEmpty($("#t4")))
+        flag = true;
+    if (isNumero($("#t4")))
+        flag = true;
+    if (isEmpty($("#t6")))
+        flag = true;
+    if (isEmail($("#t6")))
+        flag = true;
+    return flag
+}
+
+
+    /*if (error == "") {
         var ul = $('<ul/>', {'id': 'msj-ul'});
         error += "<li>Los datos son correctos</li>";
         $("#msj").append(ul);
         $('#msj-ul').append(error);
         $("#msj").removeClass().addClass("row-fluid bg-success");
-    }
-    var form = $("#form");
-    form.attr("action", url);
-    form.submit();
-}
-
-function validacion() {
-    var error = "";
-    if ($("#t1").val().length == 0 || $("#t1").val().length > 50) {
-        error += "<li>Debe de un ingresar un nombre y no debe de exceder de 50 caracteres</li>";
-        $("#c1").removeClass().addClass("form-group has-error");
-    } else {
-        $("#c1").removeClass().addClass("form-group");
-    }
-    if ($("#t3").val() == "0") {
-        error += "<li>Debe de seleccionar un Tipo de Documento</li>";
-        $("#c2").removeClass().addClass("form-inline has-error");
-        $("#c3").removeClass().addClass("form-inline has-error");
-    } else if ($("#t3").val() == "DNI" && $("#t4").val().length != 8) {
-        error += "<li>El numero de documento es incorrecto</li>";
-        $("#c2").removeClass().addClass("form-inline");
-        $("#c3").removeClass().addClass("form-inline has-error");
-    } else if ($("#t3").val() == "RUC" && $("#t4").val().length != 11) {
-        error += "<li>El numero de documento es incorrecto</li>";
-        $("#c2").removeClass().addClass("form-inline");
-        $("#c3").removeClass().addClass("form-inline has-error");
-    } else {
-        $("#c2").removeClass().addClass("form-inline");
-        $("#c3").removeClass().addClass("form-inline");
-    }
-    if ($("#t5").val().length == 0 || $("#t5").val().length > 50) {
-        error += "<li>Debe de un ingresar un representante legal y no debe de exceder de 50 caracteres</li>";
-        $("#c4").removeClass().addClass("form-group has-error");
-    } else {
-        $("#c4").removeClass().addClass("form-group");
-    }
-    if (valEmail($("#t6").val())) {
-        $("#c5").removeClass().addClass("form-group");
-    } else {
-        error += "<li>Debe de un ingresar un Email correcto</li>";
-        $("#c5").removeClass().addClass("form-group has-error");
-    }
-    $('#msj-ul').remove();
-    if (error != "") {
-        var ul = $('<ul/>', {'id': 'msj-ul'});
-        $("#msj").append(ul);
-        $('#msj-ul').append(error);
-        $("#msj").removeClass().addClass("row-fluid bg-danger");
-    }
-    return error;
-//    console.log($("#myModalLabel").val());
-//    $("#myModalLabel").val("Errores");
-//    $('body').addClass("modal-open");
-//    $("#myModal").removeClass().addClass("modal fade in");
-//    $("#myModal").css({"display": "block", "padding-right": "17px"});
-    $("#myModal").on('shown.bs.modal', function (e) {
-        var element = $(e.relatedTarget);
-        var type = element.data('alert');
-    });
-}
+    }*/

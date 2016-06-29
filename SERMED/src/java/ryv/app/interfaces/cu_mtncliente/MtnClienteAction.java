@@ -151,14 +151,12 @@ public class MtnClienteAction {
         Map map = model.asMap();
         List<DireccionDTO> lst = (List<DireccionDTO>) map.get("lstDirecciones");
         int nro = 1;
-//        } else {
         for (DireccionDTO dir : lst) {
             if (dir.getAccion() != 'E') {
                 dir.setNroTabla(nro);
                 nro++;
             }
         }
-//        }
         dto.setId(0);
         dto.setNroTabla(nro);
         dto.setPos(lst.size());

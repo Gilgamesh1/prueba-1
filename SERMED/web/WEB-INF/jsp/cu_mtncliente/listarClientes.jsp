@@ -89,9 +89,14 @@
                                     <td><c:out value="${elem.representante}"/></td>
                                     <td><c:out value="${elem.telefono}"/></td>
                                     <td><c:out value="${elem.celular}"/></td>
-                                    <td><a href="<c:url value="/MtnCliente/cargarUnCliente.html">
-                                               <c:param name="id" value="${elem.id}"></c:param>
-                                           </c:url>" class="btn btn-default" role="button">Actualizar</a>
+                                    <td>
+                                        <a class="like" href="<c:url value="/MtnCliente/cargarUnCliente.html">
+                                            <c:param name="id" value="${elem.id}"></c:param></c:url>" title="Actualizar">
+                                            <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a class="remove" href="#" title="Eliminar">
+                                            <i class="glyphicon glyphicon-remove"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>
