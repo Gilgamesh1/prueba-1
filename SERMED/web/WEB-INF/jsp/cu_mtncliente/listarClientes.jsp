@@ -7,40 +7,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Clientes</title>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery-1.11.2.min.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap/js/bootstrap.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_mtncliente/mtncliente.js"/>"></script>
-        <link href="<c:url value="/recursos/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
-        <link href="<c:url value="/recursos/bootstrap/css/bootstrap-theme.css"/>" rel="stylesheet">
-    </head>
-    <body>
-        <input id="context" type="hidden" value="${pageContext.request.contextPath}"></input>
-        <div class="container">
-            <div class="row-fluid">
-                <div class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a href="#" class="navbar-brand">SD</a>
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<c:url value="cargarLogin.html"></c:url>">Mostrar Clientes</a></li>
-                                            <li><a href="#">Crear Nuevo Cliente</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Home</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             <f:form id="form" class="form-horizontal" action="${pageContext.request.contextPath}/MtnCliente/buscar.html" modelAttribute="cliente" method="POST">
                 <fieldset>
                     <legend>Buscar</legend>
@@ -138,6 +106,3 @@
                     </nav>
                 </center>
             </div>
-        </div>
-    </body>
-</html>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">        
+
+<tiles-definitions>
+    <definition name="base.definition"
+                template="/WEB-INF/jsp/maqueta/main.jsp">
+        <put-attribute name="title" value=""/>
+        <!--put-attribute name="header" value="/WEB-INF/jsp/maqueta/cabecera.jsp" /-->
+        <put-attribute name="menu" value="/WEB-INF/jsp/maqueta/menu.jsp" />
+        <put-attribute name="body" value="/WEB-INF/jsp/maqueta/blanco.jsp" />
+        <put-attribute name="footer" value="/WEB-INF/jsp/maqueta/pie.jsp" />
+    </definition>
+    <definition name="prueba" extends="base.definition">
+        <put-attribute name="title" value="Lista de Categorias" />
+    </definition>
+    <!-- CU_MTNCliente -->
+    <definition name="cargarCliente" extends="base.definition">
+        <put-attribute name="title" value="Mantenimiento de Categorias" />
+        <put-attribute name="body" value="/WEB-INF/jsp/cu_mtncliente/mtnCliente.jsp" />
+    </definition>
+    <definition name="lstCliente" extends="base.definition">
+        <put-attribute name="title" value="Lista de Categorias" />
+        <put-attribute name="body" value="/WEB-INF/jsp/cu_mtncliente/listarClientes.jsp" />
+    </definition>
+    
+    <!-- CU_MTNPELICULA
+    <definition name="cargarPeliculas" extends="base.definition">
+        <put-attribute name="title" value="Lista de Peliculas" />
+        <put-attribute name="body" value="/WEB-INF/jsp/cu_mtnpelicula/cargarPeliculas.jsp" />
+    </definition>
+    <definition name="mtnPelicula" extends="base.definition">
+        <put-attribute name="title" value="Mantenimiento de Pelicula" />
+        <put-attribute name="body" value="/WEB-INF/jsp/cu_mtnpelicula/mtnPelicula.jsp" />
+    </definition> -->
+</tiles-definitions>

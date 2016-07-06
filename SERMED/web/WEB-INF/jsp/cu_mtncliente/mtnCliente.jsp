@@ -1,60 +1,11 @@
 <%-- 
     Document   : mtnCliente
     Created on : 27/05/2016, 12:18:44 PM
-    Author     : RaÃºl
+    Author     : Raúl
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="f"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!--a/js/bootstrapvalidator/js/bootstrapValidator.min.js-->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery-1.11.2.min.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/jquery/jquery.validate.min.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap/js/bootstrap.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap-table/js/bootstrap-table.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap-table/locale/bootstrap-table-es-SP.js"/>"></script>
-       <!-- <script language="javascript" type="text/javascript" src="<c:url value="/recursos/bootstrap-validator/js/validator.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<curl value="/recursos/bootstrap-validator/js/bootstrapValidator.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<curl value="/recursos/bootstrap-validator/js/language/es_PE.js"/>"></script>
-        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>-->
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_mtncliente/mtncliente.js"/>"></script>
-        <script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/global.js"/>"></script>
-        <link href="<c:url value="/recursos/bootstrap/css/bootstrap.css"/>" rel="stylesheet">
-        <link href="<c:url value="/recursos/bootstrap/css/bootstrap-theme.css"/>" rel="stylesheet">
-        <link href="<c:url value="/recursos/bootstrap-table/css/bootstrap-table.css"/>" rel="stylesheet">
-        <!--<link href="<curl value="/recursos/bootstrap-validator/css/bootstrapValidator.css"/>" rel="stylesheet">-->
-        <title>Mantenimiento de Clientes</title>
-    </head>
-    <body>
-        <input id="context" type="hidden" value="${pageContext.request.contextPath}"></input>
-        <div class="container">
-            <div class="row-fluid">
-                <div class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a href="#" class="navbar-brand">SD</a>
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Archivo<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="<c:url value="cargarLogin.html"/>">Administrar Login</a></li>
-                                        <li><a href="#">Administrar Clientes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Contact</a></li>
-                                <li><a href="#">Blog</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<script language="javascript" type="text/javascript" src="<c:url value="/recursos/js/cu_mtncliente/mtncliente.js"/>"></script>
             <div id="alerta" name="alerta" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
@@ -131,7 +82,7 @@
                             <span class="help-block"></span><f:hidden id="t11" path="pos"/>
                         </div>
                         <div class="col-md-2">
-                            <a href="#" onclick="guardarDireccion()" class="btn btn-default" role="button">Guardar DirecciÃ³n</a>
+                            <a href="#" onclick="guardarDireccion()" class="btn btn-default" role="button">Guardar Dirección</a>
                         </div>
                     </div>
                 </fieldset>
@@ -178,5 +129,3 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
